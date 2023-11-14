@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "425330365136",
+    "project_id": "college-system-dcs212004",
+    "storage_bucket": "college-system-dcs212004.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425330365136:android:c22dcbe59975867bdfc4d5",
+        "android_client_info": {
+          "package_name": "com.example.collegesystem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTWha8-ANACbrlVdQve_3vI94KEvoi6UA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
