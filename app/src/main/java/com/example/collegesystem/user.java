@@ -1,11 +1,7 @@
 package com.example.collegesystem;
 
 public class user {
-    private String name;
-    private String matricNo;
-    private String email;
-    private String course;
-    private String userID;
+    private String name,userID,course,email,matricNo;
 
     public user() {
         // Default constructor required for calls to DataSnapshot.getValue(user.class)

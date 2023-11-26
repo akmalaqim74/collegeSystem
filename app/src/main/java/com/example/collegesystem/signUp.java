@@ -145,7 +145,10 @@ public class signUp extends AppCompatActivity {
                                                     user newUser = new user(name, matricNo, email, course,UID);
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
                                                     matricNumbersRef.child(matricNo).setValue(newUser);
+                                                    DatabaseReference userRef = rootRef.getReference("Users");
+                                                    userRef.child(UID).setValue(newUser);
                                                     Toast.makeText(signUp.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
+
 
                                                     Intent intent = new Intent(signUp.this, login.class);
                                                     startActivity(intent);
