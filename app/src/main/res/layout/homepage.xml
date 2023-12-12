@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#313338">
 
     <LinearLayout
         android:id="@+id/titleLinearLayout"
@@ -17,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/profilePic"
+            android:id="@+id/exit"
             android:layout_width="85dp"
             android:layout_height="72dp"
             android:layout_marginLeft="10dp"
@@ -31,20 +32,31 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="TimeTable"
-            android:textColor="@color/black"
+            android:text="Home Page"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/logOut"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="25dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="log Out"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/exit" />
 
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/timeTableLayout"
         android:layout_width="match_parent"
         android:layout_height="530dp"
@@ -53,18 +65,77 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout">
 
-    </LinearLayout>
+        <ImageButton
+            android:id="@+id/toDoList"
+
+            android:layout_width="98dp"
+            android:layout_height="99dp"
+            android:layout_marginBottom="76dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="TO DO LIST"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.814"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/newtodo" />
+
+        <ImageButton
+            android:id="@+id/addSubject"
+            android:layout_width="98dp"
+            android:layout_height="99dp"
+            android:layout_marginTop="104dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="addSubject"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@+id/toDoList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.814"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/register" />
+
+        <ImageButton
+            android:id="@+id/addAssignment"
+            android:layout_width="98dp"
+            android:layout_height="99dp"
+            android:layout_marginBottom="84dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Add Assignment"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/toDoList"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/reminder" />
+
+        <ImageButton
+            android:id="@+id/attendance"
+            android:layout_width="98dp"
+            android:layout_height="99dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="taking attendance"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@+id/addAssignment"
+            app:layout_constraintEnd_toStartOf="@+id/addSubject"
+            app:layout_constraintHorizontal_bias="0.345"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.419"
+            app:srcCompat="@drawable/correct" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/addSubject"
+        android:id="@+id/addLecturer"
         android:layout_width="88dp"
         android:layout_height="83dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/transparent"
-        android:contentDescription="addSubject"
+        android:contentDescription="addLecturer"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeTableLayout"
         app:srcCompat="@drawable/addicon" />
@@ -78,7 +149,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addSubject"
         app:layout_constraintVertical_bias="0.7">
 
     </LinearLayout>

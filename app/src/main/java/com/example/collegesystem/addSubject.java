@@ -27,7 +27,7 @@ import java.util.Locale;
 
 
 public class addSubject extends AppCompatActivity {
-    String selectedTimeStart,selectedTimeEnded;
+    String selectedTimeStart,selectedTimeEnded,email;
     ImageButton back,classStartButton;
     AutoCompleteTextView tempSubject;
     FirebaseAuth mAuth;
@@ -42,6 +42,8 @@ public class addSubject extends AppCompatActivity {
         classStartTimePickerFunction();
         classEndedTimePickerFunction();
         addButtonFunction();
+
+
     }
 
     public void addButtonFunction(){
@@ -52,45 +54,6 @@ public class addSubject extends AppCompatActivity {
                 String venue = setGetVenue();
                 tempSubject = findViewById(R.id.dropBox);
                 String subject = tempSubject.getText().toString();
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                String uid = currentUser.getUid();
-
-                FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-                DatabaseReference userRef = rootRef.getReference().child("Users").child(uid);
-
-                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            String course = dataSnapshot.child("course").getValue(String.class);
-                            String matricNo = dataSnapshot.child("matricNo").getValue(String.class);
-
-                            DatabaseReference timetableRef = rootRef.getReference().child("Course")
-                                    .child(course)
-                                    .child("Matric_Numbers")
-                                    .child(matricNo)
-                                    .child("Time_Table")
-                                    .child(subject);
-
-                            timeTableSubject newSubject = new timeTableSubject(subject, selectedTimeStart, selectedTimeEnded,venue);
-                            //feels like want to take only the first alphabet from every words, etc
-                            // mobile app development = M.A.D.
-                            timetableRef.setValue(newSubject);
-                            Toast.makeText(addSubject.this,"Successful add subject", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(addSubject.this,homePage.class);
-                            startActivity(intent);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                        // Handle errors
-                    }
-                });
-
-
-
 
             }
         });
@@ -199,4 +162,6 @@ public class addSubject extends AppCompatActivity {
 
         return getVenue;
     }
+
+
 }

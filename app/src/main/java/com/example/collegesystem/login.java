@@ -41,8 +41,8 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.login);
         mAuth = FirebaseAuth.getInstance();
         loginUser();
-        toSignUpPage();
-        backFunction();
+        //toSignUpPage();
+        //backFunction();
 
 
 
@@ -83,7 +83,7 @@ public class login extends AppCompatActivity {
         });
 
     }
-    public void toSignUpPage(){
+    /*public void toSignUpPage(){
         TextView signUpTextView = findViewById(R.id.signUpTextView);
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
@@ -94,8 +94,8 @@ public class login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-    public void backFunction(){
+    }*/
+    /*public void backFunction(){
         ImageButton back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,5 +106,5 @@ public class login extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 }

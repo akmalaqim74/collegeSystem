@@ -1,36 +1,35 @@
 package com.example.collegesystem;
 
 public class user {
-    private String name,userID,course,email,matricNo;
+    private String name,userID,department,email,lecturer_ID;
 
     public user() {
         // Default constructor required for calls to DataSnapshot.getValue(user.class)
     }
 
-    public user(String name, String matricNo, String email, String course,String UID) {
+    public user(String name, String lecturer_ID, String email, String department,String UID) {
         this.name = name;
-        this.matricNo = matricNo;
+        this.lecturer_ID = lecturer_ID;
         this.email = email;
-        this.course = course;
+        this.department = department;
         this.userID = UID;
     }
     public String getName() {
         return name;
     }
 
-    public String getMatricNo() {
-        return matricNo;
+    public String getlecturer_ID() {
+        return lecturer_ID;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getCourse() {
-        return course;
+    public String getDepartment() {
+        return department;
     }
     public String getUserID(){return userID;}
 
     // Add getters and setters as needed
 }
-

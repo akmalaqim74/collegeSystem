@@ -6,6 +6,13 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class homePage extends AppCompatActivity {
     ImageButton addSubject,profilePicture;
@@ -14,6 +21,8 @@ public class homePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
         addSubjectButton();
+        addLecturerMethod();
+        toDoList();
     }
 
     public void addSubjectButton(){
@@ -29,7 +38,7 @@ public class homePage extends AppCompatActivity {
         });
     }
     public void viewProfilePic(){
-        profilePicture = findViewById(R.id.profilePic);
+        profilePicture = findViewById(R.id.exit);
         addSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,5 +48,66 @@ public class homePage extends AppCompatActivity {
                 //startActivity(intent);
             }
         });
+    }
+    public void toDoList(){
+        ImageButton toDoList = findViewById(R.id.toDoList);
+        toDoList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homePage.this, toDoList.class);
+
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void addLecturerMethod(){
+        ImageButton addLecturerButton = findViewById(R.id.addLecturer);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference().child("Users").child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String lecturerId = dataSnapshot.child("lecturer_ID").getValue(String.class);
+
+                        // Now you can use the retrieved values as needed for the current user
+                        System.out.println("Lecturer ID: " + lecturerId);
+                        addLecturerButton.setVisibility(View.INVISIBLE);
+                        if(lecturerId.equalsIgnoreCase("ADMIN")){
+                            addLecturerButton.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
+
+
+        addLecturerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homePage.this, signUpLecturer.class);
+                startActivity(intent);
+
+            }
+        });
+
+    }
+    private FirebaseUser getCurrentUser() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        return mAuth.getCurrentUser();
     }
 }

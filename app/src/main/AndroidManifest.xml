@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CollegeSystem"
         tools:targetApi="31" >
         <activity
-            android:name=".mainActivity"
+            android:name=".login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signUp"></activity>
-        <activity android:name=".login"></activity>
-        <activity android:name=".homePage"></activity>
         <activity android:name=".addSubject"></activity>
+        <activity android:name=".signUpLecturer"></activity>
+        <activity android:name=".homePage"></activity>
+        <activity android:name=".toDoList"></activity>
+        <activity android:name=".addToDoList"></activity>
     </application>
 
 </manifest>
