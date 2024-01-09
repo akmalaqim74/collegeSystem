@@ -50,8 +50,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="570dp"
+        android:layout_width="410dp"
+        android:layout_height="703dp"
+        android:background="@color/white"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout" />
@@ -60,14 +62,14 @@
         android:id="@+id/addTodOList"
         android:layout_width="108dp"
         android:layout_height="97dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="636dp"
         android:background="@android:color/transparent"
         android:contentDescription="add ToDoList"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout"
         app:srcCompat="@drawable/writing" />
 
 

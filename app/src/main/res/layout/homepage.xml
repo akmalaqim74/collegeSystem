@@ -80,6 +80,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/newtodo" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Taking Attendance"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintBottom_toTopOf="@+id/addAssignment"
+            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintHorizontal_bias="0.296"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/attendance"
+            app:layout_constraintVertical_bias="0.0" />
+
         <ImageButton
             android:id="@+id/addSubject"
             android:layout_width="98dp"
@@ -96,6 +110,20 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/register" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:text="Register Student \n to Subject"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintBottom_toTopOf="@+id/toDoList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addSubject"
+            app:layout_constraintVertical_bias="0.0" />
+
         <ImageButton
             android:id="@+id/addAssignment"
             android:layout_width="98dp"
@@ -109,6 +137,20 @@
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/reminder" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Add Assignment"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAssignment"
+            app:layout_constraintVertical_bias="0.142" />
 
         <ImageButton
             android:id="@+id/attendance"
@@ -124,6 +166,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.419"
             app:srcCompat="@drawable/correct" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TO-DO-LIST"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.643"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/toDoList"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton

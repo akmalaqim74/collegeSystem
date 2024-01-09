@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +26,7 @@ public class homePage extends AppCompatActivity {
         addSubjectButton();
         addLecturerMethod();
         toDoList();
+        logOut();
     }
 
     public void addSubjectButton(){
@@ -76,12 +80,11 @@ public class homePage extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String lecturerId = dataSnapshot.child("lecturer_ID").getValue(String.class);
-
+                        String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
+                        String extractedId = Id.substring(0, 4);
                         // Now you can use the retrieved values as needed for the current user
-                        System.out.println("Lecturer ID: " + lecturerId);
                         addLecturerButton.setVisibility(View.INVISIBLE);
-                        if(lecturerId.equalsIgnoreCase("ADMIN")){
+                        if(extractedId.equals("ADMIN")){
                             addLecturerButton.setVisibility(View.VISIBLE);
                         }
 
@@ -109,5 +112,17 @@ public class homePage extends AppCompatActivity {
     private FirebaseUser getCurrentUser() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         return mAuth.getCurrentUser();
+    }
+    public void logOut(){
+        ImageButton logOut = findViewById(R.id.logOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(homePage.this, login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

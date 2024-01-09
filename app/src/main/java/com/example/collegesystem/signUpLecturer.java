@@ -54,7 +54,7 @@ public class signUpLecturer extends AppCompatActivity {
         //============ DROP BOX ITEM==========
         tempDepartment = findViewById(R.id.dropBox);
         // Define the options for the drop-down menu in an array
-        String[] options = {"Course","Diploma Computer Science", "Diploma Information Technology", "Diploma Halal Management"};
+        String[] options = { "FICT","Halal Management"};
         // Create an ArrayAdapter to set the options to the Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
         // Set the adapter to the Spinner
@@ -136,12 +136,13 @@ public class signUpLecturer extends AppCompatActivity {
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
                                                     matricNumbersRef.child(lecturer_ID).setValue(newUser);
                                                     DatabaseReference userRef = rootRef.getReference("Users");
-                                                    userRef.child(name).setValue(newUser);
+                                                    userRef.child(UID).setValue(newUser);
                                                     Toast.makeText(signUpLecturer.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
 
 
                                                     Intent intent = new Intent(signUpLecturer.this, homePage.class);
                                                     startActivity(intent);
+                                                    finish();
 
                                                 } else {
                                                     // If sign up fails, display a message to the user.

@@ -36,6 +36,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
+            android:maxLength="60"
             android:hint="Add Tittle"
             android:background="#3A3C3F"
             android:textColorHint="@color/white"
@@ -51,7 +52,10 @@
         android:layout_width="match_parent"
         android:layout_height="548dp"
         android:hint="Task Details"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
         android:textSize="21sp"
+        android:maxLength="1000"
         android:inputType="text"
         android:background="#3A3C3F"
         android:textColorHint="@color/white"
@@ -90,5 +94,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/datePicker"
         app:layout_constraintTop_toBottomOf="@+id/taskDetails" />
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="102dp"
+        android:layout_height="77dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="save"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
+        app:layout_constraintVertical_bias="0.528"
+        app:srcCompat="@drawable/check" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
