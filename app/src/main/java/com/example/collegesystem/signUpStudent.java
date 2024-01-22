@@ -26,18 +26,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class signUpLecturer extends AppCompatActivity {
-    String name, lecturer_ID, email,password, department;
-    EditText tempName, tempLecturerID, tempEmail,tempPassword;
+public class signUpStudent extends AppCompatActivity {
+    String nameStudent, matricNo, email,IcNUmber, password, department;
+    EditText tempNameStudent, tempMatricNo, tempIcNumber, tempEmail,tempPassword;
     Spinner tempDepartment;
-    ImageButton signUpLecturer;
+    ImageButton signUpStudent;
     FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signuplecutrer);
+        setContentView(R.layout.signupstudent);
         mAuth = FirebaseAuth.getInstance();
 
         dropBoxItem();//method  to add item in dropBox
@@ -64,49 +64,51 @@ public class signUpLecturer extends AppCompatActivity {
     }
     public void backButtonFunction(){
         //========== BACK BUTTON FUNCTION ==========
-        ImageButton back = findViewById(R.id.backButtonSignUp);
+        ImageButton back = findViewById(R.id.backButtonSignUpStudent);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Handle the click event here, e.g., open SignUpActivity
-                Intent intent = new Intent(signUpLecturer.this,homePage.class);
+                Intent intent = new Intent(signUpStudent.this,homePage.class);
                 startActivity(intent);
             }
         });
         //========== END OF BACK BUTTON FUNCTION==========
     }
     public void signUpButtonFunction(){
-        tempName = findViewById(R.id.getName);
-        tempLecturerID = findViewById(R.id.getLecturerID);
+        tempNameStudent = findViewById(R.id.getNameStudent);
+        tempMatricNo = findViewById(R.id.getMatricNumber);
         tempPassword = findViewById(R.id.getPasswordStudent);
         tempEmail = findViewById(R.id.getEmailStudent);
-        signUpLecturer = findViewById(R.id.signUp);
-        signUpLecturer.setOnClickListener(new View.OnClickListener() {
+        tempIcNumber = findViewById(R.id.getICNumberStudent);
+        signUpStudent = findViewById(R.id.signUpStudent);
+        signUpStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //========== GET VALUE FROM USER==========
-                name = tempName.getText().toString();
-                lecturer_ID = tempLecturerID.getText().toString().toUpperCase();
+                nameStudent = tempNameStudent.getText().toString();
+                matricNo = tempMatricNo.getText().toString().toUpperCase();
+                IcNUmber = tempIcNumber.getText().toString();
                 email = tempEmail.getText().toString();
                 password = tempPassword.getText().toString();
                 department = tempDepartment.getSelectedItem().toString();
                 //==========END OF GET VALUE FROM USER==========
 
-                if(TextUtils.isEmpty(lecturer_ID)||TextUtils.isEmpty(password)||TextUtils.isEmpty(email)){
-                    Toast.makeText(signUpLecturer.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(matricNo)||TextUtils.isEmpty(password)||TextUtils.isEmpty(email)){
+                    Toast.makeText(signUpStudent.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else{
                     //========= linked to fireBase==========
                     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-                    DatabaseReference departmentRef = rootRef.getReference("Department");
+                    DatabaseReference courseRef = rootRef.getReference("Department").child("student");
                     // Check if the course node exists
-                    DatabaseReference currentDepartmentRef = departmentRef.child(department);
-                    DatabaseReference lecturerIdRef = currentDepartmentRef.child("Lecturer ID");
+                    DatabaseReference currentCourseRef = courseRef.child(department);
+                    DatabaseReference matricNumbersRef = currentCourseRef.child("Matric Number");
                     /*Explain:  Basically every matricNumber will be store inside a specific course node
                     there will be 3 nodes,
                     parent: Course
-                    child: name of Course
+                    child: nameStudent of Course
                     grandchild: matric NUmber
                     son of grandchild: the JSON data
                      */
@@ -115,12 +117,12 @@ public class signUpLecturer extends AppCompatActivity {
 
 
                     // Check if matricNo already exists
-                    lecturerIdRef.child(lecturer_ID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    matricNumbersRef.child(matricNo).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 // The matricNo already exists, handle the situation (e.g., show an error message)
-                                Toast.makeText(signUpLecturer.this, "Matric Number already exists.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(signUpStudent.this, "Matric Number already exists.", Toast.LENGTH_SHORT).show();
                             } else {
                                 mAuth.createUserWithEmailAndPassword(email, password)
                                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -132,21 +134,22 @@ public class signUpLecturer extends AppCompatActivity {
                                                     String UID = firebaseUser.getUid();
 
                                                     // Create a User object
-                                                    registerLecturer newRegisterLecturer = new registerLecturer(name, lecturer_ID, email, department,UID);
+                                                    //registerStudent(String name, String userID, String department, String email, String icNumber, String matricNo)
+                                                    registerStudent newRegisterStudent = new registerStudent(nameStudent,UID,department,email,IcNUmber, matricNo);
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
-                                                    lecturerIdRef.child(lecturer_ID).setValue(newRegisterLecturer);
-                                                    DatabaseReference userRef = rootRef.getReference("Users");
-                                                    userRef.child(UID).setValue(newRegisterLecturer);
-                                                    Toast.makeText(signUpLecturer.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
+                                                    matricNumbersRef.child(matricNo).setValue(newRegisterStudent);
+                                                    DatabaseReference userRef = rootRef.getReference("Users").child("student");
+                                                    userRef.child(UID).setValue(newRegisterStudent);
+                                                    Toast.makeText(signUpStudent.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
 
 
-                                                    Intent intent = new Intent(signUpLecturer.this, homePage.class);
+                                                    Intent intent = new Intent(signUpStudent.this, homePage.class);
                                                     startActivity(intent);
                                                     finish();
 
                                                 } else {
                                                     // If sign up fails, display a message to the registerLecturer.
-                                                    Toast.makeText(signUpLecturer.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(signUpStudent.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
@@ -155,8 +158,8 @@ public class signUpLecturer extends AppCompatActivity {
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             // Handle the error
-                            Toast.makeText(signUpLecturer.this, "Database error.", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(signUpLecturer.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signUpStudent.this, "Database error.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(signUpStudent.this, "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                             Log.e("FirebaseError", "Database error", databaseError.toException());
                         }
                     });

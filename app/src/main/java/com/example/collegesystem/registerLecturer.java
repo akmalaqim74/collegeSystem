@@ -1,13 +1,13 @@
 package com.example.collegesystem;
 
-public class user {
+public class registerLecturer {
     private String name,userID,department,email,lecturer_ID;
 
-    public user() {
-        // Default constructor required for calls to DataSnapshot.getValue(user.class)
+    public registerLecturer() {
+        // Default constructor required for calls to DataSnapshot.getValue(registerLecturer.class)
     }
 
-    public user(String name, String lecturer_ID, String email, String department,String UID) {
+    public registerLecturer(String name, String lecturer_ID, String email, String department, String UID) {
         this.name = name;
         this.lecturer_ID = lecturer_ID;
         this.email = email;

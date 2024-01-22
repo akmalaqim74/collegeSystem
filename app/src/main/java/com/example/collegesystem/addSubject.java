@@ -104,7 +104,7 @@ public class addSubject extends AppCompatActivity {
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                                // This method is called when the user selects a time
+                                // This method is called when the registerLecturer selects a time
                                 // can use selectedHour and selectedMinute as needed
                                 // For example, can update a TextView with the selected time
                                 selectedTimeStart = String.format(Locale.getDefault(),"%02d:%02d", selectedHour, selectedMinute);
@@ -138,7 +138,7 @@ public class addSubject extends AppCompatActivity {
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                                // This method is called when the user selects a time
+                                // This method is called when the registerLecturer selects a time
                                 // can use selectedHour and selectedMinute as needed
                                 // For example, can update a TextView with the selected time
                                 selectedTimeEnded = String.format(Locale.getDefault(),"%02d:%02d", selectedHour, selectedMinute);

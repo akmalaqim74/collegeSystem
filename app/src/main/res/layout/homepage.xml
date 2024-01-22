@@ -80,6 +80,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/newtodo" />
 
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="139dp"
+            android:layout_height="125dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="profilePic"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/avatar" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,7 +108,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
-            android:id="@+id/addSubject"
+            android:id="@+id/temp"
             android:layout_width="98dp"
             android:layout_height="99dp"
             android:layout_marginTop="104dp"
@@ -107,7 +120,7 @@
             app:layout_constraintHorizontal_bias="0.814"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.578"
             app:srcCompat="@drawable/register" />
 
         <TextView
@@ -121,7 +134,7 @@
             android:textSize="21dp"
             app:layout_constraintBottom_toTopOf="@+id/toDoList"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addSubject"
+            app:layout_constraintTop_toBottomOf="@+id/temp"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
@@ -160,11 +173,11 @@
             android:contentDescription="taking attendance"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toTopOf="@+id/addAssignment"
-            app:layout_constraintEnd_toStartOf="@+id/addSubject"
-            app:layout_constraintHorizontal_bias="0.345"
+            app:layout_constraintEnd_toStartOf="@+id/temp"
+            app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.419"
+            app:layout_constraintVertical_bias="0.818"
             app:srcCompat="@drawable/correct" />
 
         <TextView
@@ -180,6 +193,23 @@
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/toDoList"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="303dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="76dp"
+            android:text="TextView"
+            android:textSize="29dp"
+            android:paddingTop="60dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.546"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
@@ -192,6 +222,34 @@
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeTableLayout"
+        app:srcCompat="@drawable/addicon" />
+
+    <ImageButton
+        android:id="@+id/addStudent"
+        android:layout_width="88dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="addLecturer"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeTableLayout"
+        app:srcCompat="@drawable/addicon" />
+
+    <ImageButton
+        android:id="@+id/addSubject"
+        android:layout_width="88dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="addLecturer"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeTableLayout"
         app:srcCompat="@drawable/addicon" />

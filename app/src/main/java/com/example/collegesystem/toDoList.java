@@ -49,12 +49,21 @@ public class toDoList extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String lecturerId = dataSnapshot.child("lecturer_ID").getValue(String.class);
-                        String department = dataSnapshot.child("department").getValue(String.class);
-                        DatabaseReference toDoRef = rootRef.getReference().child("Department").child(department).child("Lecturer ID").child(lecturerId).child("toDoList");
+                        String lecturerId = dataSnapshot
+                                .child("lecturer_ID")
+                                .getValue(String.class);
+                        String department = dataSnapshot
+                                .child("department")
+                                .getValue(String.class);
+                        DatabaseReference toDoRef = rootRef.getReference()
+                                .child("Department")
+                                .child(department)
+                                .child("Lecturer ID")
+                                .child(lecturerId)
+                                .child("toDoList");
 
 
-                        // Now you can use the retrieved values as needed for the current user
+                        // Now you can use the retrieved values as needed for the current registerLecturer
                         toDoRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {

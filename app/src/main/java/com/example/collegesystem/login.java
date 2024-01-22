@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,7 +25,7 @@ public class login extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if registerLecturer is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(login.this,homePage.class);
@@ -49,8 +48,8 @@ public class login extends AppCompatActivity {
     }
 
     public void loginUser(){
-        tempEmail = findViewById(R.id.getEmail);
-        tempPassword = findViewById(R.id.getPassword);
+        tempEmail = findViewById(R.id.getEmailStudent);
+        tempPassword = findViewById(R.id.getPasswordStudent);
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +68,7 @@ public class login extends AppCompatActivity {
                                     startActivity(intent);
 
                                 } else {
-                                    // If sign in fails, display a message to the user.
+                                    // If sign in fails, display a message to the registerLecturer.
 
                                     Toast.makeText(login.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();

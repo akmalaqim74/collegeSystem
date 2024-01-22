@@ -56,7 +56,9 @@ public class addToDoList extends AppCompatActivity {
                     String uid = currentUser.getUid();
 
                     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-                    DatabaseReference userRef = rootRef.getReference().child("Users").child(uid);
+                    DatabaseReference userRef = rootRef.getReference()
+                            .child("Users")
+                            .child(uid);
 
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -64,9 +66,13 @@ public class addToDoList extends AppCompatActivity {
                             // Generate a random ID for the to-do item
                             String randomId = UUID.randomUUID().toString().substring(0, 5);
 
-                            // Retrieve department and lecturer ID from the user data
-                            String department = dataSnapshot.child("department").getValue(String.class);
-                            String lecturerId = dataSnapshot.child("lecturer_ID").getValue(String.class);
+                            // Retrieve department and lecturer ID from the registerLecturer data
+                            String department = dataSnapshot
+                                    .child("department")
+                                    .getValue(String.class);
+                            String lecturerId = dataSnapshot
+                                    .child("lecturer_ID")
+                                    .getValue(String.class);
 
                             // Create a unique to-do ID combining lecturer ID and random part
                             String toDoID = lecturerId + randomId;
@@ -75,7 +81,13 @@ public class addToDoList extends AppCompatActivity {
                             PrivatetoDoList tempToDo = new PrivatetoDoList(title, detail, date);
 
                             // Reference to the location where the to-do item will be stored
-                            DatabaseReference toDoRef = rootRef.getReference().child("Department").child(department).child("Lecturer ID").child(lecturerId).child("toDoList").child(toDoID);
+                            DatabaseReference toDoRef = rootRef.getReference()
+                                    .child("Department")
+                                    .child(department)
+                                    .child("Lecturer ID")
+                                    .child(lecturerId)
+                                    .child("toDoList")
+                                    .child(toDoID);
 
                             // Set the value of the to-do item
                             toDoRef.setValue(tempToDo)

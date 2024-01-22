@@ -2,8 +2,11 @@ package com.example.collegesystem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,14 +22,19 @@ import com.google.firebase.database.ValueEventListener;
 
 public class homePage extends AppCompatActivity {
     ImageButton addSubject,profilePicture;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-        addSubjectButton();
+        addSubject();
         addLecturerMethod();
+        addStudentMethod();
         toDoList();
         logOut();
+        studentAttendance();
+        setName();
     }
 
     public void addSubjectButton(){
@@ -67,22 +75,24 @@ public class homePage extends AppCompatActivity {
 
     public void addLecturerMethod(){
         ImageButton addLecturerButton = findViewById(R.id.addLecturer);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser != null) {
             String uid = currentUser.getUid();
 
             FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-            DatabaseReference userRef = rootRef.getReference().child("Users").child(uid);
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
 
             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
-                        String extractedId = Id.substring(0, 4);
-                        // Now you can use the retrieved values as needed for the current user
+                        String extractedId = Id.substring(0, 5);
+                        Log.d("ID",extractedId);
+
+                        // Now you can use the retrieved values as needed for the current registerLecturer
                         addLecturerButton.setVisibility(View.INVISIBLE);
                         if(extractedId.equals("ADMIN")){
                             addLecturerButton.setVisibility(View.VISIBLE);
@@ -109,6 +119,53 @@ public class homePage extends AppCompatActivity {
         });
 
     }
+    public void addStudentMethod(){
+        ImageButton addStudentButton = findViewById(R.id.addStudent);
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
+                        String extractedId = Id.substring(0, 5);
+                        Log.d("ID",extractedId);
+
+                        // Now you can use the retrieved values as needed for the current registerLecturer
+                        addStudentButton.setVisibility(View.INVISIBLE);
+                        if(extractedId.equals("ADMIN")){
+                            addStudentButton.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
+
+
+        addStudentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(homePage.this, signUpStudent.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+    }
     private FirebaseUser getCurrentUser() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         return mAuth.getCurrentUser();
@@ -124,5 +181,59 @@ public class homePage extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void studentAttendance(){
+        subjectFloatingWindow floatingWindow = new subjectFloatingWindow(this);
+        ImageButton takingAttendance = findViewById(R.id.attendance);
+        takingAttendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                floatingWindow.setWidth(1000);
+                floatingWindow.setHeight(1150);
+                floatingWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+            }
+        });
+
+    }
+    public void addSubject(){
+        ImageButton addSubject = findViewById(R.id.addSubject);
+        addSubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(homePage.this,subjectRegistration.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void setName(){
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String name = dataSnapshot.child("name").getValue(String.class);
+
+                        TextView TVName = findViewById(R.id.Name);
+                        TVName.setText(name);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
     }
 }

@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     android:background="#313338"
     >
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="62dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="backButton"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backbutton" />
 
     <ImageButton
         android:id="@+id/login"
@@ -96,7 +83,7 @@
         android:layout_width="335dp"
         android:layout_height="136dp"
         android:layout_marginTop="40dp"
-        android:text="ENTER YOUR \nMATRIC NUMBER &amp; \nPASSWORD "
+        android:text="ENTER YOUR \nEMAIL &amp; \nPASSWORD "
         android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -119,7 +106,7 @@
         app:layout_constraintTop_toTopOf="@+id/login" />
 
     <EditText
-        android:id="@+id/getEmail"
+        android:id="@+id/getEmailStudent"
         android:layout_width="250dp"
         android:layout_height="83dp"
         android:layout_marginTop="80dp"
@@ -136,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/getPassword"
+        android:id="@+id/getPasswordStudent"
         android:layout_width="250dp"
         android:layout_height="83dp"
         android:layout_marginTop="8dp"
@@ -150,7 +137,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/getEmailStudent" />
 
     <TextView
         android:id="@+id/signUpTextView"
@@ -166,7 +153,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/getPasswordStudent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
