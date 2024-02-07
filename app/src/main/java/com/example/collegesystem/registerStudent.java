@@ -1,19 +1,20 @@
 package com.example.collegesystem;
 
 public class registerStudent {
-    private String name,userID,department,email,IcNumber,matricNo;
+    private String name,userID,department,email,IcNumber,matricNo,role;
 
     public registerStudent(){
 
     }
 
-    public registerStudent(String name, String userID, String department, String email, String icNumber, String matricNo){
+    public registerStudent(String name, String userID, String department, String email, String icNumber, String matricNo,String tempRole){
         this.name = name;
         this.userID = userID;
         this.department = department;
         this.email = email;
         this.IcNumber = icNumber;
         this.matricNo = matricNo;
+        this.role = tempRole;
     }
 
     public String getName() {
@@ -62,5 +63,9 @@ public class registerStudent {
 
     public void setMatricNo(String matricNo) {
         this.matricNo = matricNo;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

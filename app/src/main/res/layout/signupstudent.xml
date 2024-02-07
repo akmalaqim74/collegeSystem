@@ -81,15 +81,16 @@
         android:id="@+id/getNameStudent"
         android:layout_width="248dp"
         android:layout_height="83dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rectangle"
         android:ems="10"
         android:gravity="center"
         android:hint="Name"
-        android:textColorHint="#000000"
-        android:textColor="#000000"
         android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -172,5 +173,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getPasswordStudent" />
+    <Spinner
+        android:id="@+id/dropBoxRole"
+        android:layout_width="250dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:background="@drawable/rectangle"
+        android:hint = "Department"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

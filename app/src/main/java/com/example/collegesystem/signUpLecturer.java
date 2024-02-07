@@ -27,9 +27,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class signUpLecturer extends AppCompatActivity {
-    String name, lecturer_ID, email,password, department;
+    String name, lecturer_ID, email,password, department,role;
     EditText tempName, tempLecturerID, tempEmail,tempPassword;
-    Spinner tempDepartment;
+    Spinner tempDepartment ,tempRole;
     ImageButton signUpLecturer;
     FirebaseAuth mAuth;
 
@@ -41,6 +41,7 @@ public class signUpLecturer extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         dropBoxItem();//method  to add item in dropBox
+        dropBoxRoleItem();
         backButtonFunction();//method for back to the main page
         signUpButtonFunction();//method for sign up
 
@@ -59,6 +60,18 @@ public class signUpLecturer extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
         // Set the adapter to the Spinner
         tempDepartment.setAdapter(adapter);
+        //========= END OF DROP BOX ITEM =========
+
+    }
+    public void dropBoxRoleItem(){
+        //============ DROP BOX ITEM==========
+        tempRole = findViewById(R.id.dropBoxRole);
+        // Define the options for the drop-down menu in an array
+        String[] options = {"Staff","Admin","Lecturer","Student"};
+        // Create an ArrayAdapter to set the options to the Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
+        // Set the adapter to the Spinner
+        tempRole.setAdapter(adapter);
         //========= END OF DROP BOX ITEM =========
 
     }
@@ -81,6 +94,7 @@ public class signUpLecturer extends AppCompatActivity {
         tempPassword = findViewById(R.id.getPasswordStudent);
         tempEmail = findViewById(R.id.getEmailStudent);
         signUpLecturer = findViewById(R.id.signUp);
+
         signUpLecturer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +104,8 @@ public class signUpLecturer extends AppCompatActivity {
                 email = tempEmail.getText().toString();
                 password = tempPassword.getText().toString();
                 department = tempDepartment.getSelectedItem().toString();
+                role = tempRole.getSelectedItem().toString();
+
                 //==========END OF GET VALUE FROM USER==========
 
                 if(TextUtils.isEmpty(lecturer_ID)||TextUtils.isEmpty(password)||TextUtils.isEmpty(email)){
@@ -120,7 +136,7 @@ public class signUpLecturer extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 // The matricNo already exists, handle the situation (e.g., show an error message)
-                                Toast.makeText(signUpLecturer.this, "Matric Number already exists.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(signUpLecturer.this, "Lecturer ID already exists.", Toast.LENGTH_SHORT).show();
                             } else {
                                 mAuth.createUserWithEmailAndPassword(email, password)
                                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -132,7 +148,7 @@ public class signUpLecturer extends AppCompatActivity {
                                                     String UID = firebaseUser.getUid();
 
                                                     // Create a User object
-                                                    registerLecturer newRegisterLecturer = new registerLecturer(name, lecturer_ID, email, department,UID);
+                                                    registerLecturer newRegisterLecturer = new registerLecturer(name, lecturer_ID, email, department,UID,role);
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
                                                     lecturerIdRef.child(lecturer_ID).setValue(newRegisterLecturer);
                                                     DatabaseReference userRef = rootRef.getReference("Users");

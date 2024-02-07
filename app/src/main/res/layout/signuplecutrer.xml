@@ -156,5 +156,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getPasswordStudent" />
+    <Spinner
+        android:id="@+id/dropBoxRole"
+        android:layout_width="250dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:background="@drawable/rectangle"
+        android:hint = "Department"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,13 @@
 package com.example.collegesystem;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -35,6 +38,8 @@ public class homePage extends AppCompatActivity {
         logOut();
         studentAttendance();
         setName();
+        testing();
+        addStudentToSubject();
     }
 
     public void addSubjectButton(){
@@ -75,6 +80,7 @@ public class homePage extends AppCompatActivity {
 
     public void addLecturerMethod(){
         ImageButton addLecturerButton = findViewById(R.id.addLecturer);
+        //addLecturerButton.setVisibility(View.INVISIBLE);
 
         if (currentUser != null) {
             String uid = currentUser.getUid();
@@ -84,16 +90,12 @@ public class homePage extends AppCompatActivity {
                     .child("Users")
                     .child(uid);
 
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            /*userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
                         String extractedId = Id.substring(0, 5);
-                        Log.d("ID",extractedId);
-
-                        // Now you can use the retrieved values as needed for the current registerLecturer
-                        addLecturerButton.setVisibility(View.INVISIBLE);
                         if(extractedId.equals("ADMIN")){
                             addLecturerButton.setVisibility(View.VISIBLE);
                         }
@@ -105,7 +107,7 @@ public class homePage extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
                     // Handle errors
                 }
-            });
+            });*/
         }
 
 
@@ -134,7 +136,7 @@ public class homePage extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
+                        /*String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
                         String extractedId = Id.substring(0, 5);
                         Log.d("ID",extractedId);
 
@@ -142,7 +144,7 @@ public class homePage extends AppCompatActivity {
                         addStudentButton.setVisibility(View.INVISIBLE);
                         if(extractedId.equals("ADMIN")){
                             addStudentButton.setVisibility(View.VISIBLE);
-                        }
+                        }*/
 
                     }
                 }
@@ -184,7 +186,7 @@ public class homePage extends AppCompatActivity {
     }
 
     public void studentAttendance(){
-        subjectFloatingWindow floatingWindow = new subjectFloatingWindow(this);
+        subjectFloatingWindow floatingWindow = new subjectFloatingWindow(homePage.this);
         ImageButton takingAttendance = findViewById(R.id.attendance);
         takingAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +194,13 @@ public class homePage extends AppCompatActivity {
                 floatingWindow.setWidth(1000);
                 floatingWindow.setHeight(1150);
                 floatingWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+                floatingWindow.subjectSpinner.requestFocus(); // Request focus for the input field
+
+                // Show the soft keyboard programmatically
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(floatingWindow.subjectSpinner, InputMethodManager.SHOW_IMPLICIT);
+
+
 
             }
         });
@@ -203,6 +212,26 @@ public class homePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(homePage.this,subjectRegistration.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void addStudentToSubject(){
+        ImageButton addStudentSubject = findViewById(R.id.addStudentToSubject);
+        addStudentSubject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(homePage.this,addStudentToSubject.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void testing(){
+        ImageButton test = findViewById(R.id.addAssignment);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(homePage.this,chooseSubject.class);
                 startActivity(intent);
             }
         });

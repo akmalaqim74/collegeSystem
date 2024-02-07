@@ -25,10 +25,14 @@
         <activity android:name=".addSubject"></activity>
         <activity android:name=".signUpLecturer"></activity>
         <activity android:name=".signUpStudent"></activity>
-        <activity android:name=".homePage"></activity>
+        <activity android:name=".homePage"
+                    android:windowSoftInputMode="adjustResize"
+            ></activity>
         <activity android:name=".toDoList"></activity>
         <activity android:name=".addToDoList"></activity>
         <activity android:name="subjectRegistration"></activity>
+        <activity android:name=".chooseSubject"></activity>
+        <activity android:name=".addStudentToSubject"></activity>
     </application>
 
 </manifest>

@@ -27,9 +27,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class signUpStudent extends AppCompatActivity {
-    String nameStudent, matricNo, email,IcNUmber, password, department;
+    String nameStudent, matricNo, email,IcNUmber, password, department,role;
     EditText tempNameStudent, tempMatricNo, tempIcNumber, tempEmail,tempPassword;
-    Spinner tempDepartment;
+    Spinner tempDepartment,tempRole;
     ImageButton signUpStudent;
     FirebaseAuth mAuth;
 
@@ -43,9 +43,22 @@ public class signUpStudent extends AppCompatActivity {
         dropBoxItem();//method  to add item in dropBox
         backButtonFunction();//method for back to the main page
         signUpButtonFunction();//method for sign up
+        dropBoxRoleItem();
 
 
 
+
+    }
+    public void dropBoxRoleItem(){
+        //============ DROP BOX ITEM==========
+        tempRole = findViewById(R.id.dropBoxRole);
+        // Define the options for the drop-down menu in an array
+        String[] options = {"Staff","Admin","Lecturer","Student"};
+        // Create an ArrayAdapter to set the options to the Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
+        // Set the adapter to the Spinner
+        tempRole.setAdapter(adapter);
+        //========= END OF DROP BOX ITEM =========
 
     }
 
@@ -92,6 +105,7 @@ public class signUpStudent extends AppCompatActivity {
                 email = tempEmail.getText().toString();
                 password = tempPassword.getText().toString();
                 department = tempDepartment.getSelectedItem().toString();
+                role = tempRole.getSelectedItem().toString();
                 //==========END OF GET VALUE FROM USER==========
 
                 if(TextUtils.isEmpty(matricNo)||TextUtils.isEmpty(password)||TextUtils.isEmpty(email)){
@@ -135,10 +149,11 @@ public class signUpStudent extends AppCompatActivity {
 
                                                     // Create a User object
                                                     //registerStudent(String name, String userID, String department, String email, String icNumber, String matricNo)
-                                                    registerStudent newRegisterStudent = new registerStudent(nameStudent,UID,department,email,IcNUmber, matricNo);
+                                                    registerStudent newRegisterStudent = new registerStudent(nameStudent,UID,department,email,IcNUmber, matricNo,role);
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
                                                     matricNumbersRef.child(matricNo).setValue(newRegisterStudent);
-                                                    DatabaseReference userRef = rootRef.getReference("Users").child("student");
+                                                    
+                                                    DatabaseReference userRef = rootRef.getReference("Users");
                                                     userRef.child(UID).setValue(newRegisterStudent);
                                                     Toast.makeText(signUpStudent.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
 

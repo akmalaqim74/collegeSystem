@@ -1,16 +1,12 @@
 package com.example.collegesystem;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ImageButton;
-import android.widget.PopupWindow;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,34 +16,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class subjectFloatingWindow extends PopupWindow {
+public class chooseSubject extends AppCompatActivity {
     AutoCompleteTextView subjectSpinner;
-    ImageButton closeButton;
-    View contentView;
     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
 
-    public subjectFloatingWindow(Context context){
-        super(context);
-
-        contentView = LayoutInflater.from(context).inflate(R.layout.choosesubject, null);
-        setContentView(contentView);
-
-        closeButtonFunction();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.choosesubject);
         dropBoxSubject();
-
-
-
-    }
-    private void closeButtonFunction(){
-        closeButton = contentView.findViewById(R.id.Exit);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dismiss();
-            }
-        });
-
     }
     private void dropBoxSubject(){
 
@@ -90,12 +67,13 @@ public class subjectFloatingWindow extends PopupWindow {
 
 
     private void dropBoxFunction(ArrayList<String> tempSubjectSpinner){
-        //============ DROP BOX ITEM==========
-        subjectSpinner =  contentView.findViewById(R.id.subjectSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(contentView.getContext(),R.layout.spinner_item_style,tempSubjectSpinner);
-        // Set the adapter to the Spinner
-        subjectSpinner.setAdapter(adapter);
-        subjectSpinner.setThreshold(0);
-        //========= END OF DROP BOX ITEM =========
+            //============ DROP BOX ITEM==========
+            subjectSpinner = findViewById(R.id.subjectSpinner);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style,tempSubjectSpinner);
+            // Set the adapter to the Spinner
+            subjectSpinner.setAdapter(adapter);
+            subjectSpinner.setThreshold(0);
+            //========= END OF DROP BOX ITEM =========
     }
+
 }

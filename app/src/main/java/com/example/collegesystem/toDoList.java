@@ -43,7 +43,8 @@ public class toDoList extends AppCompatActivity {
             String uid = currentUser.getUid();
 
             FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-            DatabaseReference userRef = rootRef.getReference().child("Users").child(uid);
+            DatabaseReference userRef = rootRef.getReference().child("Users")
+                    .child(uid);
 
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
