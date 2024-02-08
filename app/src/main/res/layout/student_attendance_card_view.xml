@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timeTableLayout"
+        android:layout_width="372dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/attendCheckBox"
+            android:layout_width="148dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="Attend"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/studentName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/absentCheckBox"
+            android:layout_width="148dp"
+            android:layout_height="48dp"
+            android:text="Absent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toEndOf="@+id/matricNo"
+            app:layout_constraintTop_toBottomOf="@+id/attendCheckBox" />
+
+        <CheckBox
+            android:id="@+id/excuseCheckBox"
+            android:layout_width="148dp"
+            android:layout_height="48dp"
+            android:text="Excuse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/studentName"
+            app:layout_constraintTop_toBottomOf="@+id/absentCheckBox" />
+
+        <TextView
+            android:id="@+id/studentName"
+            android:layout_width="211dp"
+            android:layout_height="82dp"
+            android:gravity="center"
+            android:text="Student Name"
+            android:textColor="@color/teal_200"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.213" />
+
+        <TextView
+            android:id="@+id/matricNo"
+            android:layout_width="211dp"
+            android:layout_height="46dp"
+            android:gravity="center"
+            android:text="Matric Number"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.037"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/studentName" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -115,7 +115,7 @@ public class signUpStudent extends AppCompatActivity {
                 else{
                     //========= linked to fireBase==========
                     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-                    DatabaseReference courseRef = rootRef.getReference("Department").child("student");
+                    DatabaseReference courseRef = rootRef.getReference("Department").child("Student");
                     // Check if the course node exists
                     DatabaseReference currentCourseRef = courseRef.child(department);
                     DatabaseReference matricNumbersRef = currentCourseRef.child("Matric Number");
@@ -158,9 +158,11 @@ public class signUpStudent extends AppCompatActivity {
                                                     Toast.makeText(signUpStudent.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
 
 
-                                                    Intent intent = new Intent(signUpStudent.this, homePage.class);
-                                                    startActivity(intent);
-                                                    finish();
+                                                    tempNameStudent.setText("");
+                                                    tempMatricNo.setText("");
+                                                    tempIcNumber.setText("");
+                                                    tempEmail.setText("");
+                                                    tempPassword.setText("");
 
                                                 } else {
                                                     // If sign up fails, display a message to the registerLecturer.

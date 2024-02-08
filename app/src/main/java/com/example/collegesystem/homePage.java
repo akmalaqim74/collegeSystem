@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,6 @@ public class homePage extends AppCompatActivity {
         logOut();
         studentAttendance();
         setName();
-        testing();
         addStudentToSubject();
     }
 
@@ -68,14 +68,53 @@ public class homePage extends AppCompatActivity {
     }
     public void toDoList(){
         ImageButton toDoList = findViewById(R.id.toDoList);
-        toDoList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homePage.this, toDoList.class);
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
 
-                startActivity(intent);
-            }
-        });
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String role = dataSnapshot.child("role").getValue(String.class);
+                        if(role.equals("Lecturer")){
+                            toDoList.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(homePage.this, toDoList.class);
+
+                                    startActivity(intent);
+                                }
+                            });
+
+
+                        }else{
+                            toDoList.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(homePage.this, "Only Available for Lecturer", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                        }
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
     }
 
     public void addLecturerMethod(){
@@ -186,21 +225,12 @@ public class homePage extends AppCompatActivity {
     }
 
     public void studentAttendance(){
-        subjectFloatingWindow floatingWindow = new subjectFloatingWindow(homePage.this);
         ImageButton takingAttendance = findViewById(R.id.attendance);
         takingAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                floatingWindow.setWidth(1000);
-                floatingWindow.setHeight(1150);
-                floatingWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-                floatingWindow.subjectSpinner.requestFocus(); // Request focus for the input field
-
-                // Show the soft keyboard programmatically
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(floatingWindow.subjectSpinner, InputMethodManager.SHOW_IMPLICIT);
-
-
+                Intent intent = new Intent(homePage.this,chooseSubject.class);
+                startActivity(intent);
 
             }
         });
@@ -222,16 +252,6 @@ public class homePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(homePage.this,addStudentToSubject.class);
-                startActivity(intent);
-            }
-        });
-    }
-    public void testing(){
-        ImageButton test = findViewById(R.id.addAssignment);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(homePage.this,chooseSubject.class);
                 startActivity(intent);
             }
         });

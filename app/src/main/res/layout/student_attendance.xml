@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#313338">
+
+    <TextView
+        android:id="@+id/subjectTextView"
+        android:layout_width="361dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="36dp"
+        android:text="Subject"
+        android:textAlignment="center"
+        android:textSize="29dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="247dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="4dp"
+        android:text="ATTENDANCE"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subjectTextView" />
+
+    <TextView
+        android:id="@+id/displayDate"
+        android:layout_width="295dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:text="DD/MM/YY"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="63dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/displayDate"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/displayDate"
+        app:layout_constraintTop_toTopOf="@+id/displayDate"
+        app:srcCompat="@drawable/calendar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/studentList"
+        android:layout_width="409dp"
+        android:layout_height="486dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayDate" />
+
+    <TextView
+        android:id="@+id/submitButton"
+        android:layout_width="148dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/teal_200"
+        android:clickable="true"
+        android:text="Submit"
+        android:textAlignment="center"
+        android:textSize="29dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentList" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

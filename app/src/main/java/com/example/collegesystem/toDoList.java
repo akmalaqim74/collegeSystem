@@ -59,7 +59,7 @@ public class toDoList extends AppCompatActivity {
                         DatabaseReference toDoRef = rootRef.getReference()
                                 .child("Department")
                                 .child(department)
-                                .child("Lecturer ID")
+                                .child("Lecturer")
                                 .child(lecturerId)
                                 .child("toDoList");
 

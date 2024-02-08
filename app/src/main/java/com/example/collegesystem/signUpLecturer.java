@@ -118,7 +118,7 @@ public class signUpLecturer extends AppCompatActivity {
                     DatabaseReference departmentRef = rootRef.getReference("Department");
                     // Check if the course node exists
                     DatabaseReference currentDepartmentRef = departmentRef.child(department);
-                    DatabaseReference lecturerIdRef = currentDepartmentRef.child("Lecturer ID");
+                    DatabaseReference lecturerIdRef = currentDepartmentRef.child("Lecturer");
                     /*Explain:  Basically every matricNumber will be store inside a specific course node
                     there will be 3 nodes,
                     parent: Course
@@ -154,12 +154,10 @@ public class signUpLecturer extends AppCompatActivity {
                                                     DatabaseReference userRef = rootRef.getReference("Users");
                                                     userRef.child(UID).setValue(newRegisterLecturer);
                                                     Toast.makeText(signUpLecturer.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
-
-
-                                                    Intent intent = new Intent(signUpLecturer.this, homePage.class);
-                                                    startActivity(intent);
-                                                    finish();
-
+                                                    tempName.setText("");
+                                                    tempLecturerID.setText("");
+                                                    tempEmail.setText("");
+                                                    tempPassword.setText("");
                                                 } else {
                                                     // If sign up fails, display a message to the registerLecturer.
                                                     Toast.makeText(signUpLecturer.this, "Authentication failed.", Toast.LENGTH_SHORT).show();

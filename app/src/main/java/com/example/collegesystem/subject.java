@@ -1,7 +1,7 @@
 package com.example.collegesystem;
 
 public class subject {
-    private String subjectName,courseCode,section,venue,classStart,classEnd,lecturerId;
+    private String subjectName,courseCode,section,venue,classStart,classEnd,lecturerId,studentName,studentMatricNo;
 
     public subject(){
 
@@ -20,6 +20,11 @@ public class subject {
         this.courseCode = tempCourseCode;
         this.section = tempSection;
 
+    }
+
+    public subject(String tempName,String tempMatricNo){
+        this.studentName = tempName;
+        this.studentMatricNo = tempMatricNo;
     }
 
     public String getSubjectName() {
@@ -76,5 +81,21 @@ public class subject {
 
     public void setLecturerId(String lecturerId) {
         lecturerId = lecturerId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getStudentMatricNo() {
+        return studentMatricNo;
+    }
+
+    public void setStudentMatricNo(String studentMatricNo) {
+        this.studentMatricNo = studentMatricNo;
     }
 }

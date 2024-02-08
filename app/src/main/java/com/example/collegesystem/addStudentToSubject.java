@@ -174,18 +174,35 @@ public class addStudentToSubject extends AppCompatActivity {
                             .child(courseCode)
                             .child("Student")
                             .child(matricNo);
+                            subjectRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        // The matricNo already exists, handle the situation (e.g., show an error message)
+                                        Toast.makeText(addStudentToSubject.this, "Student already in the subject", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        subjectRef.setValue(studentMatric.substring(indexOfSpaceStudent))
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(addStudentToSubject.this, "Student Added to the Subject", Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            Toast.makeText(addStudentToSubject.this, "Failed to add student to Subject", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                     //setName
-                    subjectRef.setValue(studentMatric.substring(indexOfSpaceStudent))
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(addStudentToSubject.this, "Student Added to the Subject", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(addStudentToSubject.this, "Failed to add student to Subject", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
 
 
 
