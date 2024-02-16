@@ -86,8 +86,11 @@ public class subjectRegistration extends AppCompatActivity {
                                 .child(UID)
                                 .child("lecturer_ID")
                                 .getValue(String.class);
-                        listLecturerId.add(lecturerId);
-                        Log.d("UID", lecturerId + " INI LECTURER ID");
+                        String lecturerName = snapshot
+                                .child(UID)
+                                .child("name")
+                                .getValue(String.class);
+                        listLecturerId.add(lecturerId + " " + lecturerName);
                     }
 
                     i++;
@@ -206,10 +209,13 @@ public class subjectRegistration extends AppCompatActivity {
             public void onClick(View v) {
                 //=========Store Value in String=========
                 subjectName = tempSubjectName.getText().toString();
-                courseCode = tempCourseCode.getText().toString();
+                courseCode = tempCourseCode.getText().toString().toUpperCase();
                 section = tempSection.getText().toString();
                 venue = tempVenue.getText().toString();
-                lecturerId = tempLecturerId.getText().toString();
+                String tempLecturersId = tempLecturerId.getText().toString();
+                int indexOfLecturerName = tempLecturersId.indexOf(' ');
+                lecturerId = tempLecturersId.substring(0, indexOfLecturerName);
+
 
                 //selectedTimeStart,selectedTimeEnded
                 if(TextUtils.isEmpty(lecturerId)||TextUtils.isEmpty(courseCode)||TextUtils.isEmpty(subjectName)){

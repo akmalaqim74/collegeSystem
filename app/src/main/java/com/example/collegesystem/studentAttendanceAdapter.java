@@ -36,12 +36,15 @@ public class studentAttendanceAdapter extends RecyclerView.Adapter<studentAttend
         subject currentItem = list.get(position);
         holder.studentName.setText(currentItem.getStudentName());
         holder.matricNo.setText(currentItem.getStudentMatricNo());
+        // Set checkbox states based on subject object
+        holder.checkBoxFunction(currentItem);
 
 
     }
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 
@@ -55,18 +58,56 @@ public class studentAttendanceAdapter extends RecyclerView.Adapter<studentAttend
             attendCheckBox = itemView.findViewById(R.id.attendCheckBox);
             absentCheckBox = itemView.findViewById(R.id.absentCheckBox);
             excuseCheckBox = itemView.findViewById(R.id.excuseCheckBox);
-            checkBoxFunction();
+            //checkBoxFunction();
 
 
 
         }
-        public  void checkBoxFunction(){
-            attendCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+        public  void checkBoxFunction(subject currentItem){
+            attendCheckBox = itemView.findViewById(R.id.attendCheckBox);
+            absentCheckBox = itemView.findViewById(R.id.absentCheckBox);
+            excuseCheckBox = itemView.findViewById(R.id.excuseCheckBox);
+
+                attendCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        absentCheckBox.setChecked(false);
+                        excuseCheckBox.setChecked(false);
+                        currentItem.setAttend(true);
+                        currentItem.setAbsent(false);
+                        currentItem.setExcuse(false);
+                    }
+                });
+
+                absentCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        attendCheckBox.setChecked(false);
+                        excuseCheckBox.setChecked(false);
+                        currentItem.setAbsent(true);
+                        currentItem.setAttend(false);
+                        currentItem.setExcuse(false);
+                    }
+                });
+
+                excuseCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked) {
+                        attendCheckBox.setChecked(false);
+                        absentCheckBox.setChecked(false);
+                        currentItem.setExcuse(true);
+                        currentItem.setAttend(false);
+                        currentItem.setAbsent(false);
+                    }
+                });
+
+            /*attendCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked) {
                     // Handle attend checkbox state change
                     // Ensure only one checkbox is checked
                     absentCheckBox.setChecked(false);
                     excuseCheckBox.setChecked(false);
+                    list.get(getAdapterPosition()).setAttend(true);
+                    list.get(getAdapterPosition()).setAbsent(false);
+                    list.get(getAdapterPosition()).setExcuse(false);
                 }
             });
 
@@ -76,6 +117,9 @@ public class studentAttendanceAdapter extends RecyclerView.Adapter<studentAttend
                     // Ensure only one checkbox is checked
                     attendCheckBox.setChecked(false);
                     excuseCheckBox.setChecked(false);
+                    list.get(getAdapterPosition()).setAbsent(true);
+                    list.get(getAdapterPosition()).setAttend(false);
+                    list.get(getAdapterPosition()).setExcuse(false);
                 }
             });
 
@@ -85,9 +129,15 @@ public class studentAttendanceAdapter extends RecyclerView.Adapter<studentAttend
                     // Ensure only one checkbox is checked
                     attendCheckBox.setChecked(false);
                     absentCheckBox.setChecked(false);
+                    list.get(getAdapterPosition()).setExcuse(true);
+                    list.get(getAdapterPosition()).setAttend(false);
+                    list.get(getAdapterPosition()).setAbsent(false);
                 }
             });
+
+             */
         }
+
     }
 
 }

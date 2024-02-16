@@ -1,5 +1,6 @@
 package com.example.collegesystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 
 public class addStudentToSubject extends AppCompatActivity {
     AutoCompleteTextView subjectSpinner,studentSpinner;
+    String[] allSubject,allStudent;
     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
 
     @Override
@@ -32,6 +34,18 @@ public class addStudentToSubject extends AppCompatActivity {
         dropBoxSubject();
         dropBoxStudent();
         addButton();
+        exitButton();
+    }
+    private void exitButton(){
+        ImageButton exit = findViewById(R.id.exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(addStudentToSubject.this, homePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     private void dropBoxSubject(){
 
@@ -43,7 +57,7 @@ public class addStudentToSubject extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int subjectCount =(int) snapshot.getChildrenCount();
                 String subjectCourseCode = null;
-                String[] allSubject = new String[subjectCount];
+                allSubject = new String[subjectCount];
                 ArrayList<String> testSubject = new ArrayList<>();
                 int i = 0;
 
@@ -93,7 +107,7 @@ public class addStudentToSubject extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int studentCount =(int) snapshot.getChildrenCount();
                 String UID = null;
-                String[] allStudent = new String[studentCount];
+                allStudent = new String[studentCount];
                 ArrayList<String> tempStudent = new ArrayList<>();
                 int i = 0;
                 try{
@@ -162,10 +176,14 @@ public class addStudentToSubject extends AppCompatActivity {
                 // Find the index of the first space
                 int indexOfSpaceSubject = subject.indexOf(' ');
                 int indexOfSpaceStudent = studentMatric.indexOf(' ');
+                String courseCode = subject;
+                String matricNo = studentMatric;
 
                 // Extract the substring before the first space
-                String courseCode =subject.substring(0, indexOfSpaceSubject);
-                String matricNo = studentMatric.substring(0,indexOfSpaceStudent);
+                if(indexOfSpaceStudent >0 && indexOfSpaceSubject>0){
+                    courseCode =subject.substring(0, indexOfSpaceSubject);
+                    matricNo = studentMatric.substring(0,indexOfSpaceStudent);
+                }
 
                 try{
                     DatabaseReference subjectRef = rootRef
@@ -181,18 +199,37 @@ public class addStudentToSubject extends AppCompatActivity {
                                         // The matricNo already exists, handle the situation (e.g., show an error message)
                                         Toast.makeText(addStudentToSubject.this, "Student already in the subject", Toast.LENGTH_SHORT).show();
                                     }else{
-                                        subjectRef.setValue(studentMatric.substring(indexOfSpaceStudent))
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            Toast.makeText(addStudentToSubject.this, "Student Added to the Subject", Toast.LENGTH_SHORT).show();
-                                                        } else {
-                                                            Toast.makeText(addStudentToSubject.this, "Failed to add student to Subject", Toast.LENGTH_SHORT).show();
+                                        boolean subjectExist = false;
+                                        boolean studentExist = false;
+                                        //====loop to check subject invalid or not
+                                        for(int i = 0;i < allSubject.length;i++){
+                                            if(subject.equalsIgnoreCase(allSubject[i])){
+                                                subjectExist = true;
+                                            }
+                                        }
+                                        //=====loop to check student exist or not
+                                        for(int j = 0; j< allStudent.length;j++){
+                                            if(studentMatric.equalsIgnoreCase(allStudent[j])){
+                                                studentExist = true;
+                                            }
+                                        }
+                                        if (subjectExist && studentExist){
+                                            subjectRef.setValue(studentMatric.substring(indexOfSpaceStudent))
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Toast.makeText(addStudentToSubject.this, "Student Added to the Subject", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(addStudentToSubject.this, "Failed to add student to Subject", Toast.LENGTH_SHORT).show();
+                                                            }
                                                         }
-                                                    }
-                                                });
+                                                    });
 
+                                        }
+                                        if (!subjectExist || !studentExist){
+                                            Toast.makeText(addStudentToSubject.this, "Invalid Subject or Student", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
 
                                 }
@@ -202,7 +239,6 @@ public class addStudentToSubject extends AppCompatActivity {
 
                                 }
                             });
-                    //setName
 
 
 

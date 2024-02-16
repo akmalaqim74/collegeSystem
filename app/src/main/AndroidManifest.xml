@@ -22,11 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addSubject"></activity>
         <activity android:name=".signUpLecturer"></activity>
         <activity android:name=".signUpStudent"></activity>
-        <activity android:name=".homePage"
-            ></activity>
+        <activity android:name=".homePage"></activity>
         <activity android:name=".toDoList"></activity>
         <activity android:name=".addToDoList"></activity>
         <activity android:name="subjectRegistration"></activity>

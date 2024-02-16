@@ -42,18 +42,6 @@ public class homePage extends AppCompatActivity {
         addStudentToSubject();
     }
 
-    public void addSubjectButton(){
-        addSubject = findViewById(R.id.addSubject);
-        addSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Define the intent to navigate to the menu page
-                Intent intent = new Intent(homePage.this, addSubject.class);
-                //start the homepage activity
-                startActivity(intent);
-            }
-        });
-    }
     public void viewProfilePic(){
         profilePicture = findViewById(R.id.exit);
         addSubject.setOnClickListener(new View.OnClickListener() {

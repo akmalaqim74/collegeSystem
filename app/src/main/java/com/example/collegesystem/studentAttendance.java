@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +34,7 @@ import java.util.List;
 public class studentAttendance extends AppCompatActivity {
     Intent subjectIntent;
     TextView TVsubjectName,submitButton,displayDate;
-    String subjectName,courseCode,date,matricNo,name,tempDate;
+    String subjectName,courseCode,date,matricNo,name;
     RecyclerView recyclerView;
     ArrayList<subject> list = new ArrayList<>();
     studentAttendanceAdapter listAdapter;
@@ -141,7 +143,7 @@ public class studentAttendance extends AppCompatActivity {
 
                 @Override
                 public void onClick(View v) {
-                    if(date!=null) {
+                    if(date!=null ) {
                         DatabaseReference dateRef = rootRef.getReference()
                                 .child("Subject")
                                 .child(courseCode)
@@ -149,28 +151,38 @@ public class studentAttendance extends AppCompatActivity {
                                 .child(date);
                         List<String> selectedCheckBoxes = new ArrayList<>();
                         boolean anyCheckBoxChecked = false;
+                        final booleanSuccesful isSuccessful = new booleanSuccesful();
                         Log.d("Date", date);
-                        for (int i = 0; i < recyclerView.getChildCount(); i++) {
-                            View view = recyclerView.getChildAt(i);
-                            CheckBox attendCheckBox = view.findViewById(R.id.attendCheckBox);
-                            CheckBox absentCheckBox = view.findViewById(R.id.absentCheckBox);
-                            CheckBox excuseCheckBox = view.findViewById(R.id.excuseCheckBox);
-
-                            if (attendCheckBox.isChecked()) {
+                        for (int i = 0; i < list.size(); i++) {
+                            subject currentSubject = list.get(i);
+                            if (currentSubject.isAttend()) {
                                 selectedCheckBoxes.add("Attend");
                                 anyCheckBoxChecked = true;
-                            } else if (absentCheckBox.isChecked()) {
+
+                            } else if (currentSubject.isAbsent()) {
                                 selectedCheckBoxes.add("Absent");
                                 anyCheckBoxChecked = true;
-                            } else if (excuseCheckBox.isChecked()) {
+                            } else if (currentSubject.isExcuse()) {
                                 selectedCheckBoxes.add("Excuse");
                                 anyCheckBoxChecked = true;
                             } else {
                                 Toast.makeText(studentAttendance.this, "Please Check All the checkboxes", Toast.LENGTH_SHORT).show();
-                                selectedCheckBoxes.add("Not Checked");
                             }
-                            String tempNameMatric = list.get(i).getStudentName() + " " + list.get(i).getStudentMatricNo();
-                            dateRef.child(tempNameMatric).setValue(selectedCheckBoxes.get(i));
+                            String tempNameMatric = list.get(i).getStudentMatricNo() + " " + list.get(i).getStudentName() ;
+                            dateRef.child(tempNameMatric).setValue(selectedCheckBoxes.get(i))
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                isSuccessful.setSuccessful(true);
+                                            }else{
+                                                isSuccessful.setSuccessful(false);
+                                            }
+
+                                        }
+                                    });
+                        }if(!isSuccessful.isSuccessful()){
+                            Toast.makeText(studentAttendance.this, "Some Error Occur, please Try again \n Please inform admin if happens again", Toast.LENGTH_SHORT).show();
                         }
                     }else{
                         Toast.makeText(studentAttendance.this, "Please Enter Date Of Attendance", Toast.LENGTH_SHORT).show();

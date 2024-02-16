@@ -2,7 +2,7 @@ package com.example.collegesystem;
 
 public class subject {
     private String subjectName,courseCode,section,venue,classStart,classEnd,lecturerId,studentName,studentMatricNo;
-
+    private boolean isAttend,isAbsent,isExcuse;
     public subject(){
 
     }
@@ -97,5 +97,28 @@ public class subject {
 
     public void setStudentMatricNo(String studentMatricNo) {
         this.studentMatricNo = studentMatricNo;
+    }
+    public boolean isAttend() {
+        return isAttend;
+    }
+
+    public void setAttend(boolean attend) {
+        isAttend = attend;
+    }
+
+    public boolean isAbsent() {
+        return isAbsent;
+    }
+
+    public void setAbsent(boolean absent) {
+        isAbsent = absent;
+    }
+
+    public boolean isExcuse() {
+        return isExcuse;
+    }
+
+    public void setExcuse(boolean excuse) {
+        isExcuse = excuse;
     }
 }
