@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class homePage extends AppCompatActivity {
-    ImageButton addSubject,profilePicture;
+    ImageButton profilePicture;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
     @Override
@@ -40,17 +40,18 @@ public class homePage extends AppCompatActivity {
         studentAttendance();
         setName();
         addStudentToSubject();
+        viewProfilePic();
     }
 
     public void viewProfilePic(){
-        profilePicture = findViewById(R.id.exit);
-        addSubject.setOnClickListener(new View.OnClickListener() {
+        profilePicture = findViewById(R.id.temp);
+        profilePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Define the intent to navigate to the menu page
-                //Intent intent = new Intent(homePage.this, addSubject.class);
+                Intent intent = new Intent(homePage.this, lecturerSubject.class);
                 //start the homepage activity
-                //startActivity(intent);
+                startActivity(intent);
             }
         });
     }

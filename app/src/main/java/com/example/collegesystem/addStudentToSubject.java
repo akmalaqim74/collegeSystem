@@ -37,7 +37,7 @@ public class addStudentToSubject extends AppCompatActivity {
         exitButton();
     }
     private void exitButton(){
-        ImageButton exit = findViewById(R.id.exit);
+        ImageButton exit = findViewById(R.id.Exit);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
