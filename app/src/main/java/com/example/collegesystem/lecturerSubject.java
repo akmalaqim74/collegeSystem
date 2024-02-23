@@ -1,7 +1,10 @@
 package com.example.collegesystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +31,23 @@ public class lecturerSubject extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lecturer_subject);
         display();
+        backButtonFunction();
 
 
+    }
+    public void backButtonFunction(){
+        //========== BACK BUTTON FUNCTION ==========
+        ImageButton back = findViewById(R.id.backButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event here, e.g., open SignUpActivity
+                Intent intent = new Intent(lecturerSubject.this,homePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //========== END OF BACK BUTTON FUNCTION==========
     }
     public void display(){
         recyclerView = findViewById(R.id.lecturerSubject);

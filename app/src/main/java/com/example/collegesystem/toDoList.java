@@ -31,7 +31,13 @@ public class toDoList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolist);
+        backButtonFunction();
         addToDoList();
+        display();
+
+
+    }
+    public void display(){
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(toDoList.this));
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -100,7 +106,20 @@ public class toDoList extends AppCompatActivity {
                 }
             });
         }
-
+    }
+    public void backButtonFunction(){
+        //========== BACK BUTTON FUNCTION ==========
+        ImageButton back = findViewById(R.id.backButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event here, e.g., open SignUpActivity
+                Intent intent = new Intent(toDoList.this,homePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //========== END OF BACK BUTTON FUNCTION==========
     }
     public void addToDoList(){
         ImageButton addtoDoList = findViewById(R.id.addTodOList);

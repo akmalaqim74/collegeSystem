@@ -32,6 +32,7 @@
         <activity android:name=".addStudentToSubject"></activity>
         <activity android:name=".studentAttendance"></activity>
         <activity android:name=".lecturerSubject"></activity>
+        <activity android:name=".adminPage"></activity>
     </application>
 
 </manifest>

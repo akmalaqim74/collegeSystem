@@ -82,8 +82,9 @@ public class signUpLecturer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Handle the click event here, e.g., open SignUpActivity
-                Intent intent = new Intent(signUpLecturer.this,homePage.class);
+                Intent intent = new Intent(signUpLecturer.this,adminPage.class);
                 startActivity(intent);
+                finish();
             }
         });
         //========== END OF BACK BUTTON FUNCTION==========
@@ -108,11 +109,9 @@ public class signUpLecturer extends AppCompatActivity {
 
                 //==========END OF GET VALUE FROM USER==========
 
-                if(TextUtils.isEmpty(lecturer_ID)||TextUtils.isEmpty(password)||TextUtils.isEmpty(email)){
-                    Toast.makeText(signUpLecturer.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else{
+                if(!TextUtils.isEmpty(lecturer_ID) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(name) && !TextUtils.isEmpty(department) && !TextUtils.isEmpty(role)) {
+
+
                     //========= linked to fireBase==========
                     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
                     DatabaseReference departmentRef = rootRef.getReference("Department");
@@ -174,6 +173,11 @@ public class signUpLecturer extends AppCompatActivity {
                             Log.e("FirebaseError", "Database error", databaseError.toException());
                         }
                     });
+
+                }
+                else{
+                    Toast.makeText(signUpLecturer.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
+
 
                 }
 

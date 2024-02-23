@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,28 +33,65 @@ public class homePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-        addSubject();
-        addLecturerMethod();
-        addStudentMethod();
         toDoList();
         logOut();
         studentAttendance();
         setName();
-        addStudentToSubject();
-        viewProfilePic();
+        viewSubject();
+        adminButtonFunction();
     }
 
-    public void viewProfilePic(){
+    public void viewSubject(){
         profilePicture = findViewById(R.id.temp);
-        profilePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Define the intent to navigate to the menu page
-                Intent intent = new Intent(homePage.this, lecturerSubject.class);
-                //start the homepage activity
-                startActivity(intent);
-            }
-        });
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String role = dataSnapshot.child("role").getValue(String.class);
+                        if(role.equals("Lecturer")){
+                            profilePicture.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    //Define the intent to navigate to the menu page
+                                    Intent intent = new Intent(homePage.this, lecturerSubject.class);
+                                    //start the homepage activity
+                                    startActivity(intent);
+
+                                }
+                            });
+
+
+                        }else{
+                            profilePicture.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(homePage.this, "Only Available for Lecturer", Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            });
+
+                        }
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
     }
     public void toDoList(){
         ImageButton toDoList = findViewById(R.id.toDoList);
@@ -106,96 +144,8 @@ public class homePage extends AppCompatActivity {
         }
     }
 
-    public void addLecturerMethod(){
-        ImageButton addLecturerButton = findViewById(R.id.addLecturer);
-        //addLecturerButton.setVisibility(View.INVISIBLE);
-
-        if (currentUser != null) {
-            String uid = currentUser.getUid();
-
-            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-            DatabaseReference userRef = rootRef.getReference()
-                    .child("Users")
-                    .child(uid);
-
-            /*userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
-                        String extractedId = Id.substring(0, 5);
-                        if(extractedId.equals("ADMIN")){
-                            addLecturerButton.setVisibility(View.VISIBLE);
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Handle errors
-                }
-            });*/
-        }
 
 
-        addLecturerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homePage.this, signUpLecturer.class);
-                startActivity(intent);
-
-            }
-        });
-
-    }
-    public void addStudentMethod(){
-        ImageButton addStudentButton = findViewById(R.id.addStudent);
-
-        if (currentUser != null) {
-            String uid = currentUser.getUid();
-
-            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-            DatabaseReference userRef = rootRef.getReference()
-                    .child("Users")
-                    .child(uid);
-
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        /*String Id = dataSnapshot.child("lecturer_ID").getValue(String.class);
-                        String extractedId = Id.substring(0, 5);
-                        Log.d("ID",extractedId);
-
-                        // Now you can use the retrieved values as needed for the current registerLecturer
-                        addStudentButton.setVisibility(View.INVISIBLE);
-                        if(extractedId.equals("ADMIN")){
-                            addStudentButton.setVisibility(View.VISIBLE);
-                        }*/
-
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Handle errors
-                }
-            });
-        }
-
-
-        addStudentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homePage.this, signUpStudent.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
-
-    }
     private FirebaseUser getCurrentUser() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         return mAuth.getCurrentUser();
@@ -225,26 +175,45 @@ public class homePage extends AppCompatActivity {
         });
 
     }
-    public void addSubject(){
-        ImageButton addSubject = findViewById(R.id.addSubject);
-        addSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(homePage.this,subjectRegistration.class);
-                startActivity(intent);
-            }
-        });
+    public void adminButtonFunction() {
+        Button admin = findViewById(R.id.adminButton);
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String role = dataSnapshot.child("role").getValue(String.class);
+                        if (role.equals("Lecturer")) {
+                            admin.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(homePage.this, adminPage.class);
+
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+
+        }
     }
-    public void addStudentToSubject(){
-        ImageButton addStudentSubject = findViewById(R.id.addStudentToSubject);
-        addStudentSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(homePage.this,addStudentToSubject.class);
-                startActivity(intent);
-            }
-        });
-    }
+
+
     public void setName(){
 
         if (currentUser != null) {

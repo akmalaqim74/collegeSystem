@@ -82,8 +82,9 @@ public class signUpStudent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Handle the click event here, e.g., open SignUpActivity
-                Intent intent = new Intent(signUpStudent.this,homePage.class);
+                Intent intent = new Intent(signUpStudent.this,adminPage.class);
                 startActivity(intent);
+                finish();
             }
         });
         //========== END OF BACK BUTTON FUNCTION==========
@@ -108,11 +109,7 @@ public class signUpStudent extends AppCompatActivity {
                 role = tempRole.getSelectedItem().toString();
                 //==========END OF GET VALUE FROM USER==========
 
-                if(TextUtils.isEmpty(matricNo)||TextUtils.isEmpty(password)||TextUtils.isEmpty(email)){
-                    Toast.makeText(signUpStudent.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else{
+                if(!TextUtils.isEmpty(matricNo) && !TextUtils.isEmpty(IcNUmber) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(department) && !TextUtils.isEmpty(role)) {
                     //========= linked to fireBase==========
                     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
                     DatabaseReference courseRef = rootRef.getReference("Department").child("Student");
@@ -152,7 +149,7 @@ public class signUpStudent extends AppCompatActivity {
                                                     registerStudent newRegisterStudent = new registerStudent(nameStudent,UID,department,email,IcNUmber, matricNo,role);
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
                                                     matricNumbersRef.child(matricNo).setValue(newRegisterStudent);
-                                                    
+
                                                     DatabaseReference userRef = rootRef.getReference("Users");
                                                     userRef.child(UID).setValue(newRegisterStudent);
                                                     Toast.makeText(signUpStudent.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();
@@ -180,6 +177,11 @@ public class signUpStudent extends AppCompatActivity {
                             Log.e("FirebaseError", "Database error", databaseError.toException());
                         }
                     });
+                }
+                else{
+                    Toast.makeText(signUpStudent.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
+
+
 
                 }
 

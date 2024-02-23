@@ -1,6 +1,7 @@
 package com.example.collegesystem;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,9 +50,24 @@ public class subjectRegistration extends AppCompatActivity {
         classStartFunction();
         classEndFunction();
         addSubjectButton();
+        backButtonFunction();
 
 
 }
+    public void backButtonFunction(){
+        //========== BACK BUTTON FUNCTION ==========
+        ImageButton back = findViewById(R.id.backButtonRegisterSubject);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event here, e.g., open SignUpActivity
+                Intent intent = new Intent(subjectRegistration.this,adminPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //========== END OF BACK BUTTON FUNCTION==========
+    }
 
     public void dropBoxLecturerId(){
 
@@ -213,16 +229,14 @@ public class subjectRegistration extends AppCompatActivity {
                 section = tempSection.getText().toString();
                 venue = tempVenue.getText().toString();
                 String tempLecturersId = tempLecturerId.getText().toString();
-                int indexOfLecturerName = tempLecturersId.indexOf(' ');
-                lecturerId = tempLecturersId.substring(0, indexOfLecturerName);
 
 
                 //selectedTimeStart,selectedTimeEnded
-                if(TextUtils.isEmpty(lecturerId)||TextUtils.isEmpty(courseCode)||TextUtils.isEmpty(subjectName)){
-                    Toast.makeText(subjectRegistration.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
-                    return ;
-                }
-                else {
+                if(!TextUtils.isEmpty(lecturerId) && !TextUtils.isEmpty(courseCode) &&!TextUtils.isEmpty(subjectName) && !TextUtils.isEmpty(section) && !TextUtils.isEmpty(venue)) {
+                    int indexOfLecturerName = tempLecturersId.indexOf(' ');
+                    lecturerId = tempLecturersId.substring(0, indexOfLecturerName);
+
+
                     //==========REFERENCE FOR SUBJECT===========
                     DatabaseReference subjectRef = rootRef.getReference()
                             .child("Subject")
@@ -253,54 +267,54 @@ public class subjectRegistration extends AppCompatActivity {
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String department = "null";
-                                String tempLecturerIds = "null";
-                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                                    String UID = userSnapshot.getKey();
-                                    Log.d("UID", UID);
-                                    // Iterate through the children of each user node
-                                    tempLecturerIds = dataSnapshot.child(UID).child("lecturer_ID").getValue(String.class);
-                                    if(lecturerId!=null && lecturerId.equalsIgnoreCase(tempLecturerIds)){
+                            String department = "null";
+                            String tempLecturerIds = "null";
+                            for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                String UID = userSnapshot.getKey();
+                                Log.d("UID", UID);
+                                // Iterate through the children of each user node
+                                tempLecturerIds = dataSnapshot.child(UID).child("lecturer_ID").getValue(String.class);
+                                if(lecturerId!=null && lecturerId.equalsIgnoreCase(tempLecturerIds)){
 
-                                        department = dataSnapshot.child(UID).child("department").getValue(String.class);
-                                    }
-
+                                    department = dataSnapshot.child(UID).child("department").getValue(String.class);
                                 }
 
-                                if(department!=null){
-                                    subject lectSubject = new subject(subjectName,courseCode,section);
-                                    DatabaseReference lecturerRef = rootRef.getReference()
-                                            .child("Department")
-                                            .child(department)
-                                            .child("Lecturer")
-                                            .child(lecturerId)
-                                            .child("subject")
-                                            .child(courseCode);
-                                    if(dataSnapshot.child("Department")
-                                            .child(department)
-                                            .child("Lecturer")
-                                            .child(lecturerId)
-                                            .child("subject")
-                                            .child(courseCode).exists()){
-                                        Toast.makeText(subjectRegistration.this, "subject already exists.", Toast.LENGTH_SHORT).show();
+                            }
 
-                                    }else{
-                                        lecturerRef.setValue(lectSubject)
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            Toast.makeText(subjectRegistration.this, "Added", Toast.LENGTH_SHORT).show();
-                                                            // The data was successfully written to the database
-                                                        } else {
-                                                            Toast.makeText(subjectRegistration.this, "Failed to add, please submit a report", Toast.LENGTH_SHORT).show();
-                                                        }
+                            if(department!=null){
+                                subject lectSubject = new subject(subjectName,courseCode,section);
+                                DatabaseReference lecturerRef = rootRef.getReference()
+                                        .child("Department")
+                                        .child(department)
+                                        .child("Lecturer")
+                                        .child(lecturerId)
+                                        .child("subject")
+                                        .child(courseCode);
+                                if(dataSnapshot.child("Department")
+                                        .child(department)
+                                        .child("Lecturer")
+                                        .child(lecturerId)
+                                        .child("subject")
+                                        .child(courseCode).exists()){
+                                    Toast.makeText(subjectRegistration.this, "subject already exists.", Toast.LENGTH_SHORT).show();
+
+                                }else{
+                                    lecturerRef.setValue(lectSubject)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(subjectRegistration.this, "Added", Toast.LENGTH_SHORT).show();
+                                                        // The data was successfully written to the database
+                                                    } else {
+                                                        Toast.makeText(subjectRegistration.this, "Failed to add, please submit a report", Toast.LENGTH_SHORT).show();
                                                     }
-                                                });
-
-                                    }
+                                                }
+                                            });
 
                                 }
+
+                            }
 
 
 
@@ -316,6 +330,11 @@ public class subjectRegistration extends AppCompatActivity {
                     });
 
 
+
+
+                }
+                else {
+                    Toast.makeText(subjectRegistration.this,"Please enter all fields", Toast.LENGTH_SHORT).show();
 
                 }
             }

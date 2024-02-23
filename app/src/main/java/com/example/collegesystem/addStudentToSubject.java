@@ -41,7 +41,7 @@ public class addStudentToSubject extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(addStudentToSubject.this, homePage.class);
+                Intent intent = new Intent(addStudentToSubject.this, adminPage.class);
                 startActivity(intent);
                 finish();
             }
