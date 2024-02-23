@@ -33,6 +33,7 @@
         <activity android:name=".studentAttendance"></activity>
         <activity android:name=".lecturerSubject"></activity>
         <activity android:name=".adminPage"></activity>
+        <activity android:name=".updateToDo"></activity>
     </application>
 
 </manifest>

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +29,10 @@ import java.util.ArrayList;
 public class toDoList extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList <PrivatetoDoList> list = new ArrayList<>();
+    String department,lecturerId,uid;
     toDoListAdapter listAdapter;
+    FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +52,8 @@ public class toDoList extends AppCompatActivity {
         recyclerView.setAdapter(listAdapter);
 
         if (currentUser != null) {
-            String uid = currentUser.getUid();
+            uid = currentUser.getUid();
 
-            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
             DatabaseReference userRef = rootRef.getReference().child("Users")
                     .child(uid);
 
@@ -56,10 +61,10 @@ public class toDoList extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String lecturerId = dataSnapshot
+                        lecturerId = dataSnapshot
                                 .child("lecturer_ID")
                                 .getValue(String.class);
-                        String department = dataSnapshot
+                        department = dataSnapshot
                                 .child("department")
                                 .getValue(String.class);
                         DatabaseReference toDoRef = rootRef.getReference()
@@ -130,6 +135,86 @@ public class toDoList extends AppCompatActivity {
                 Intent intent = new Intent(toDoList.this,addToDoList.class);
                 //start the homepage activity
                 startActivity(intent);
+            }
+        });
+    }
+    public void deleteItemFromDatabase(PrivatetoDoList itemToDelete) {
+        DatabaseReference toDoRef = rootRef.getReference()
+                .child("Department")
+                .child(department)
+                .child("Lecturer")
+                .child(lecturerId)
+                .child("toDoList");
+
+        toDoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    PrivatetoDoList toDoItem = snapshot.getValue(PrivatetoDoList.class);
+                    if (toDoItem != null &&
+                            toDoItem.getTitle().equals(itemToDelete.getTitle()) &&
+                            toDoItem.getDetail().equals(itemToDelete.getDetail()) &&
+                            toDoItem.getDate().equals(itemToDelete.getDate())
+                    ){
+                        snapshot.getRef().removeValue()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        // Item deleted successfully
+                                        // You can add any UI update or notification here
+                                        Toast.makeText(toDoList.this, "Item deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Failed to delete item
+                                        // Handle the error accordingly
+                                        Toast.makeText(toDoList.this, "Failed to delete item", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle database error
+                Toast.makeText(toDoList.this, "Database error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    public void updateToDo(PrivatetoDoList itemToUpdate){
+        DatabaseReference toDoRef = rootRef.getReference()
+                .child("Department")
+                .child(department)
+                .child("Lecturer")
+                .child(lecturerId)
+                .child("toDoList");
+
+        toDoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    PrivatetoDoList toDoItem = snapshot.getValue(PrivatetoDoList.class);
+                    if (toDoItem != null &&
+                            toDoItem.getTitle().equals(itemToUpdate.getTitle()) &&
+                            toDoItem.getDetail().equals(itemToUpdate.getDetail()) &&
+                            toDoItem.getDate().equals(itemToUpdate.getDate())
+                    ){
+                        String toDoID = snapshot.getKey();
+                        Intent intent = new Intent(toDoList.this, updateToDo.class);
+                        intent.putExtra("toDoIDKey", toDoID);
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle database error
+                Toast.makeText(toDoList.this, "Database error", Toast.LENGTH_SHORT).show();
             }
         });
     }
