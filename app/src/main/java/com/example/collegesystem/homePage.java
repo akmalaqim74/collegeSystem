@@ -39,6 +39,7 @@ public class homePage extends AppCompatActivity {
         setName();
         viewSubject();
         adminButtonFunction();
+        checkAttendance();
     }
 
     public void viewSubject(){
@@ -242,5 +243,15 @@ public class homePage extends AppCompatActivity {
                 }
             });
         }
+    }
+    public void checkAttendance(){
+        ImageButton check = findViewById(R.id.check);
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(homePage.this,checkAttendance.class);
+                startActivity(intent);
+            }
+        });
     }
 }

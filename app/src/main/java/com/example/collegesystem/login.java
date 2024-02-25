@@ -40,10 +40,6 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.login);
         mAuth = FirebaseAuth.getInstance();
         loginUser();
-        //toSignUpPage();
-        //backFunction();
-
-
 
     }
 
@@ -54,56 +50,40 @@ public class login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 email = tempEmail.getText().toString();
                 password = tempPassword.getText().toString();
+                if (!email.isEmpty() && !password.isEmpty()) {
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(login.this, "succeful Login",
+                                                Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(login.this,homePage.class);
+                                        startActivity(intent);
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(login.this, "succeful Login",
-                                            Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(login.this,homePage.class);
-                                    startActivity(intent);
+                                    } else {
+                                        // If sign in fails, display a message to the registerLecturer.
 
-                                } else {
-                                    // If sign in fails, display a message to the registerLecturer.
+                                        Toast.makeText(login.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
 
-                                    Toast.makeText(login.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
+                                    }
                                 }
-                            }
-                        });
+                            });
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
             }
         });
 
     }
-    /*public void toSignUpPage(){
-        TextView signUpTextView = findViewById(R.id.signUpTextView);
-
-        signUpTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Handle the click event here, e.g., open SignUpActivity
-                Intent intent = new Intent(login.this,signUp.class);
-                startActivity(intent);
-            }
-        });
-    }*/
-    /*public void backFunction(){
-        ImageButton back = findViewById(R.id.backButton);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Handle the click event here, e.g., open SignUpActivity
-                Intent intent = new Intent(login.this,mainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-    }*/
 }

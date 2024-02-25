@@ -7,9 +7,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/logoandtext"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/logoandtext"
         android:supportsRtl="true"
         android:theme="@style/Theme.CollegeSystem"
         tools:targetApi="31" >
@@ -34,6 +34,8 @@
         <activity android:name=".lecturerSubject"></activity>
         <activity android:name=".adminPage"></activity>
         <activity android:name=".updateToDo"></activity>
+        <activity android:name=".attendanceStatus"></activity>
+        <activity android:name=".checkAttendance"></activity>
     </application>
 
 </manifest>

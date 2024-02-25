@@ -121,4 +121,5 @@ public class subject {
     public void setExcuse(boolean excuse) {
         isExcuse = excuse;
     }
+
 }

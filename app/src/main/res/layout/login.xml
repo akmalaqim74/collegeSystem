@@ -51,46 +51,30 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="113dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="391dp"
+        android:layout_height="265dp"
+        android:layout_marginTop="4dp"
         android:background="@android:color/transparent"
         android:contentDescription="app logo"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logoandtext" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="211dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:text="College System"
-        android:textColor="#ffffff"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="335dp"
         android:layout_height="136dp"
-        android:layout_marginTop="40dp"
-        android:text="ENTER YOUR \nEMAIL &amp; \nPASSWORD "
+        android:layout_marginTop="8dp"
         android:gravity="center"
+        android:text="ENTER EMAIL &amp; \nPASSWORD "
+        android:textColor="#ffffff"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView"
@@ -138,22 +122,6 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getEmailStudent" />
-
-    <TextView
-        android:id="@+id/signUpTextView"
-        android:layout_width="258dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="8dp"
-        android:autoLink="web"
-        android:gravity="center"
-        android:linksClickable="true"
-        android:text="Don't have an account? Sign up now"
-        android:textColor="@color/purple_200"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getPasswordStudent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
