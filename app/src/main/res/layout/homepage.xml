@@ -47,29 +47,58 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/timeTableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="530dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="413dp"
+        android:layout_height="693dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout">
 
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Check Attendance"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/check"
+            app:layout_constraintVertical_bias="0.092" />
+
         <ImageButton
             android:id="@+id/toDoList"
 
             android:layout_width="98dp"
             android:layout_height="99dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginBottom="240dp"
             android:background="@android:color/transparent"
             android:contentDescription="TO DO LIST"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintHorizontal_bias="0.841"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/newtodo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="To-Do-List"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.849"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toDoList"
+            app:layout_constraintVertical_bias="0.075" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -107,7 +136,7 @@
             android:scaleType="centerInside"
             app:layout_constraintBottom_toTopOf="@+id/toDoList"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.843"
+            app:layout_constraintHorizontal_bias="0.795"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.631"
@@ -142,20 +171,6 @@
             app:srcCompat="@drawable/correct" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="TO-DO-LIST"
-            android:textColor="@color/white"
-            android:textSize="21dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toDoList"
-            app:layout_constraintVertical_bias="0.333" />
-
-        <TextView
             android:id="@+id/Name"
             android:layout_width="303dp"
             android:layout_height="100dp"
@@ -174,49 +189,40 @@
             android:id="@+id/check"
             android:layout_width="86dp"
             android:layout_height="98dp"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
             android:contentDescription="check attendance"
+            android:scaleType="centerInside"
             app:layout_constraintEnd_toStartOf="@+id/toDoList"
+            app:layout_constraintHorizontal_bias="0.348"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:srcCompat="@android:drawable/ic_menu_recent_history" />
+            app:srcCompat="@drawable/absent" />
+
+        <Button
+            android:id="@+id/borrowItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="88dp"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/adminButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Admin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:id="@+id/navigationLayout"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.7">
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/adminButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Admin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeTableLayout" />
-
-    <Button
-        android:id="@+id/borrowItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/adminButton"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeTableLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

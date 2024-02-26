@@ -43,7 +43,7 @@ public class adminPage extends AppCompatActivity {
 
     }
     public void checkBorrowItem(){
-        Button checkBorrowItem = findViewById(R.id.checkBorrowItem);
+        ImageButton checkBorrowItem = findViewById(R.id.checkBorrowItem);
         checkBorrowItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

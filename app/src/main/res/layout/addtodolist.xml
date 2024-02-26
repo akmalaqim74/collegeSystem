@@ -56,11 +56,12 @@
         android:paddingTop="20dp"
         android:textSize="21sp"
         android:maxLength="1000"
-        android:inputType="text"
         android:background="#3A3C3F"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:gravity="top"
+        android:singleLine="false"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout" />
@@ -97,17 +98,34 @@
 
     <ImageButton
         android:id="@+id/saveButton"
-        android:layout_width="102dp"
-        android:layout_height="77dp"
+        android:layout_width="183dp"
+        android:layout_height="55dp"
         android:background="@android:color/transparent"
         android:contentDescription="save"
+        android:paddingRight="100dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
-        app:layout_constraintVertical_bias="0.528"
+        app:layout_constraintVertical_bias="0.357"
         app:srcCompat="@drawable/check" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="111dp"
+        android:layout_height="36dp"
+        android:text="Save"
+        android:textSize="29dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="@+id/saveButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/saveButton"
+        app:layout_constraintTop_toTopOf="@+id/saveButton"
+        app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

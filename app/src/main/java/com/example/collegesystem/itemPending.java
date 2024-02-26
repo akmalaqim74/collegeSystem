@@ -2,7 +2,6 @@ package com.example.collegesystem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -26,30 +25,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class itemBorrowed extends AppCompatActivity {
-
+public class itemPending extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<item> list = new ArrayList<>();
-    itemBorrowedAdapter listAdapter;
+    itemPendingAdapter listAdapter;
     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_borrowed);
+        setContentView(R.layout.item_pending);
         display();
-        requestFunction();
         backButtonMethod();
-    }
-    public void requestFunction(){
-        ImageButton request = findViewById(R.id.request);
-        request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(itemBorrowed.this,itemPending.class);
-                startActivity(intent);
-            }
-        });
+
+
     }
     public void backButtonMethod(){
         ImageButton addStudentButton = findViewById(R.id.backButton);
@@ -58,7 +47,7 @@ public class itemBorrowed extends AppCompatActivity {
         addStudentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(itemBorrowed.this, adminPage.class);
+                Intent intent = new Intent(itemPending.this, itemBorrowed.class);
                 startActivity(intent);
                 finish();
 
@@ -66,14 +55,13 @@ public class itemBorrowed extends AppCompatActivity {
         });
 
     }
-
     public void display(){
-        recyclerView = findViewById(R.id.itemBorrowed);
-        recyclerView.setLayoutManager(new LinearLayoutManager(itemBorrowed.this));
+        recyclerView = findViewById(R.id.itemPending);
+        recyclerView.setLayoutManager(new LinearLayoutManager(itemPending.this));
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        listAdapter = new itemBorrowedAdapter(itemBorrowed.this,list);
+        listAdapter = new itemPendingAdapter(itemPending.this,list);
         recyclerView.setAdapter(listAdapter);
         String[] options = {"Computers and Accessories","Electronics","Audiovisual Equipment","Others"};
         list.clear();
@@ -90,7 +78,7 @@ public class itemBorrowed extends AppCompatActivity {
                         for(DataSnapshot tempSnapShot: snapshot.getChildren()){
                             String itemName = tempSnapShot.getKey();
                             String status = snapshot.child(itemName).child("status").getValue(String.class);
-                            if(status != null && status.equalsIgnoreCase("borrowed")){
+                            if(status != null && status.equalsIgnoreCase("pending")){
                                 item borrowedItem = snapshot.child(itemName).getValue(item.class);
                                 list.add(borrowedItem);
                             }
@@ -110,11 +98,11 @@ public class itemBorrowed extends AppCompatActivity {
 
     }
     public void deleteItemFromDatabase(item itemToDelete) {
-        DatabaseReference tempItemRefs = rootRef.getReference()
+        DatabaseReference itemPendingRef = rootRef.getReference()
                 .child("Borrowed Item")
                 .child(itemToDelete.getCategory());
 
-        tempItemRefs.addListenerForSingleValueEvent(new ValueEventListener() {
+        itemPendingRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -135,24 +123,25 @@ public class itemBorrowed extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         item updateStatus = new item(itemName,location,status,category);
-                                        listAdapter.notifyDataSetChanged();
-                                        tempItemRefs.child(itemName).setValue(updateStatus).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                                        itemPendingRef.child(itemName).setValue(updateStatus).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
-                                                    Toast.makeText(itemBorrowed.this, "Item Returned", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(itemPending.this, "The borrowing request has been denied.", Toast.LENGTH_SHORT).show();
+                                                    listAdapter.notifyDataSetChanged();
                                                     recreate();
                                                 }
                                             }
                                         });
-                                        }
+                                    }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         // Failed to delete item
                                         // Handle the error accordingly
-                                        Toast.makeText(itemBorrowed.this, "Failed to delete item", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(itemPending.this, "Failed to delete item", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     }
@@ -162,7 +151,50 @@ public class itemBorrowed extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle database error
-                Toast.makeText(itemBorrowed.this, "Database error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemPending.this, "Database error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    public void confirmStatusFromDatabase(item itemToDelete) {
+        DatabaseReference confirmRef = rootRef.getReference()
+                .child("Borrowed Item")
+                .child(itemToDelete.getCategory());
+
+        confirmRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    item returnedItem = snapshot.getValue(item.class);
+                    String category = returnedItem.getCategory();
+                    String itemName = returnedItem.getItemName();
+                    String location = returnedItem.getLocation();
+                    String status = "borrowed";
+
+
+                    if (returnedItem != null &&
+                            returnedItem.getItemName().equals(itemToDelete.getItemName()) &&
+                            returnedItem.getBorrowName().equals(itemToDelete.getBorrowName()) &&
+                            returnedItem.getStatus().equals(itemToDelete.getStatus())
+                    ){
+                        confirmRef.child(itemName).child("status").setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(itemPending.this, "The item has been successfully borrowed.", Toast.LENGTH_SHORT).show();
+                                    recreate();
+                                    listAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle database error
+                Toast.makeText(itemPending.this, "Database error", Toast.LENGTH_SHORT).show();
             }
         });
 

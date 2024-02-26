@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/backbutton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/itemBorrowed"
+        android:id="@+id/itemPending"
         android:layout_width="400dp"
         android:layout_height="719dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,25 +36,11 @@
         android:layout_marginBottom="4dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Item Borrowed"
+        android:text="Item Pending"
         android:textColor="@color/white"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/itemBorrowed"
+        app:layout_constraintBottom_toTopOf="@+id/itemPending"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toEndOf="@+id/backButton" />
-
-    <ImageButton
-        android:id="@+id/request"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="request"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

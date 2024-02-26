@@ -15,20 +15,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/status"
-            android:layout_width="362dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:text="status"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.411"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/borrowerName" />
-
-        <TextView
             android:id="@+id/date"
             android:layout_width="362dp"
             android:layout_height="42dp"
@@ -37,7 +23,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintHorizontal_bias="0.176"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/borrowerName" />
 
@@ -69,6 +55,31 @@
             app:layout_constraintHorizontal_bias="0.176"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/itemName" />
+        <ImageButton
+            android:id="@+id/confirm"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="edit"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toStartOf="@+id/delete"
+            app:layout_constraintHorizontal_bias="0.026"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/verified" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="362dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="status"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/borrowerName" />
 
         <ImageButton
             android:id="@+id/delete"
@@ -83,8 +94,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.545"
             app:srcCompat="@android:drawable/ic_menu_delete" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

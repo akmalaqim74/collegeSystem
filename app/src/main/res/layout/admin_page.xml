@@ -23,6 +23,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView14"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Borrowed Item"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addItem"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
         android:id="@+id/textView10"
         android:layout_width="286dp"
         android:layout_height="78dp"
@@ -122,15 +138,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backbutton" />
 
-    <Button
+    <ImageButton
         android:id="@+id/checkBorrowItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Button"
+        android:layout_width="98dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Button"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItem" />
+        app:layout_constraintTop_toBottomOf="@+id/addItem"
+        app:srcCompat="@drawable/folder" />
 
     <TextView
         android:id="@+id/textView8"

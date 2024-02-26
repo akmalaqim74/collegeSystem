@@ -92,6 +92,7 @@ public class attendanceStatus extends AppCompatActivity {
     public void displayStatus(){
         recyclerViewCalling();
         submitButton = findViewById(R.id.submitButton);
+        submitButton.setText("Check");
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

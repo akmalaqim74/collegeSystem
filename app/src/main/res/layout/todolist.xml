@@ -52,7 +52,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="410dp"
         android:layout_height="703dp"
-        android:background="@color/white"
+        android:background="#313338"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout"
-        app:srcCompat="@drawable/writing" />
+        app:srcCompat="@drawable/file" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

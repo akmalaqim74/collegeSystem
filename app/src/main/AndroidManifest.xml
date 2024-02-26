@@ -40,6 +40,7 @@
         <activity android:name=".ItemCategory"></activity>
         <activity android:name=".requestItem"></activity>
         <activity android:name=".itemBorrowed"></activity>
+        <activity android:name=".itemPending"></activity>
     </application>
 
 </manifest>
