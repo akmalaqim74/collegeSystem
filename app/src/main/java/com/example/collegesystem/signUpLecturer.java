@@ -91,7 +91,7 @@ public class signUpLecturer extends AppCompatActivity {
     }
     public void signUpButtonFunction(){
         tempName = findViewById(R.id.getName);
-        tempLecturerID = findViewById(R.id.getLecturerID);
+        tempLecturerID = findViewById(R.id.location);
         tempPassword = findViewById(R.id.getPasswordStudent);
         tempEmail = findViewById(R.id.getEmailStudent);
         signUpLecturer = findViewById(R.id.signUp);

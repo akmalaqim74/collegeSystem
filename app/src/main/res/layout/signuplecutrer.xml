@@ -32,21 +32,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/diamond" />
+        app:srcCompat="@drawable/submit" />
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="93dp"
-        android:layout_height="39dp"
-        android:text="Sign Up"
-        android:gravity="center"
-        android:fontFamily="sans-serif-black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/signUp"
-        app:layout_constraintEnd_toEndOf="@+id/signUp"
-        app:layout_constraintStart_toStartOf="@+id/signUp"
-        app:layout_constraintTop_toTopOf="@+id/signUp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -79,32 +66,31 @@
 
     <EditText
         android:id="@+id/getName"
-        android:layout_width="248dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="112dp"
-        android:background="@drawable/rectangle"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="144dp"
+        android:background="@drawable/et_res"
+        android:textColorHint="#FFFFFF"
         android:ems="10"
         android:gravity="center"
         android:hint="Name"
-        android:textColorHint="#000000"
-        android:textColor="#000000"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/getLecturerID"
-        android:layout_width="250dp"
-        android:layout_height="83dp"
+        android:id="@+id/location"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/et_res"
+        android:textColorHint="#FFFFFF"
         android:ems="10"
         android:gravity="center"
         android:hint="Lecturer ID"
         android:inputType="text"
         android:textColor="#000000"
-        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,62 +98,78 @@
 
     <EditText
         android:id="@+id/getEmailStudent"
-        android:layout_width="250dp"
-        android:layout_height="83dp"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/et_res"
+        android:textColorHint="#FFFFFF"
         android:ems="10"
         android:gravity="center"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getLecturerID" />
+        app:layout_constraintTop_toBottomOf="@+id/location" />
 
     <EditText
         android:id="@+id/getPasswordStudent"
-        android:layout_width="250dp"
-        android:layout_height="83dp"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/et_res"
+        android:textColorHint="#FFFFFF"
         android:ems="10"
         android:gravity="center"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getEmailStudent" />
+
     <Spinner
         android:id="@+id/dropBox"
-        android:layout_width="250dp"
-        android:layout_height="83dp"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/et_res"
         android:ems="10"
         android:gravity="center"
-        android:background="@drawable/rectangle"
-        android:hint = "Department"
+        android:hint="Department"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/getPasswordStudent" />
     <Spinner
         android:id="@+id/dropBoxRole"
-        android:layout_width="250dp"
-        android:layout_height="83dp"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="center"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/et_res"
+        android:textColorHint="#FFFFFF"
         android:hint = "Department"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dropBox" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Register Lecturer"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toEndOf="@+id/backButtonSignUp"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,10 @@
         <activity android:name=".updateToDo"></activity>
         <activity android:name=".attendanceStatus"></activity>
         <activity android:name=".checkAttendance"></activity>
+        <activity android:name=".registerItem"></activity>
+        <activity android:name=".ItemCategory"></activity>
+        <activity android:name=".requestItem"></activity>
+        <activity android:name=".itemBorrowed"></activity>
     </application>
 
 </manifest>

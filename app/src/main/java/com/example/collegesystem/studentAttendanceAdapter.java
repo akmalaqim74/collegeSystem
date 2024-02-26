@@ -14,9 +14,6 @@ import java.util.ArrayList;
 
 public class studentAttendanceAdapter extends RecyclerView.Adapter<studentAttendanceAdapter.myViewHolder>{
     Context context;
-    CheckBox attendCheckBox;
-    CheckBox absentCheckBox;
-    CheckBox excuseCheckBox;
     ArrayList<subject> list;
 
     public studentAttendanceAdapter(Context context, ArrayList<subject> list) {

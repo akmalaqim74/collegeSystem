@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#313338">
+
+
+    <ImageButton
+        android:id="@+id/backButtonSignUp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="backButton"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbutton"/>
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="241dp"
+        android:layout_height="112dp"
+        android:layout_marginBottom="176dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="line and dot"
+        android:rotation="180"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toEndOf="@+id/registerItem"
+        app:srcCompat="@drawable/linedot" />
+
+    <ImageButton
+        android:id="@+id/registerItem"
+        android:layout_width="129dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="172dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="diamondSignUp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/submit" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="230dp"
+        android:layout_height="116dp"
+        android:layout_marginBottom="176dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="line and dot"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/registerItem"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/linedot" />
+
+    <EditText
+        android:id="@+id/getItemName"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/et_res"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Item Name"
+        android:inputType="text"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/et_res"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Item Location"
+        android:inputType="text"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getItemName" />
+
+    <Spinner
+        android:id="@+id/category"
+        android:layout_width="249dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="236dp"
+        android:background="@drawable/et_res"
+        android:ems="10"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

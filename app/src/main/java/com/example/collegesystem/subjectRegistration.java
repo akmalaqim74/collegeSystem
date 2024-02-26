@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -139,7 +138,7 @@ public class subjectRegistration extends AppCompatActivity {
                 lecturerID[i] = tempListLecturerId.get(i);
             }
             //============ DROP BOX ITEM==========
-            tempLecturerId = findViewById(R.id.getLecturerID);
+            tempLecturerId = findViewById(R.id.location);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style,lecturerID);
             // Set the adapter to the Spinner
             tempLecturerId.setAdapter(adapter);

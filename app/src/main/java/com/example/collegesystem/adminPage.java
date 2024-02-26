@@ -3,6 +3,7 @@ package com.example.collegesystem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,9 @@ public class adminPage extends AppCompatActivity {
         addLecturerMethod();
         addStudentMethod();
         addStudentToSubject();
+        backButtonMethod();
+        addItem();
+        checkBorrowItem();
     }
     public void backButtonMethod(){
         ImageButton addStudentButton = findViewById(R.id.backButtonAdmin);
@@ -37,6 +41,26 @@ public class adminPage extends AppCompatActivity {
             }
         });
 
+    }
+    public void checkBorrowItem(){
+        Button checkBorrowItem = findViewById(R.id.checkBorrowItem);
+        checkBorrowItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(adminPage.this,itemBorrowed.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void addItem(){
+        ImageButton addItem = findViewById(R.id.addItem);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(adminPage.this,registerItem.class);
+                startActivity(intent);
+            }
+        });
     }
     public void addSubject(){
         ImageButton addSubject = findViewById(R.id.addSubject);

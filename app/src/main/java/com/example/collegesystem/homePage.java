@@ -40,6 +40,18 @@ public class homePage extends AppCompatActivity {
         viewSubject();
         adminButtonFunction();
         checkAttendance();
+        borrowItem();
+    }
+    public void borrowItem(){
+        Button borrow = findViewById(R.id.borrowItem);
+        borrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(homePage.this, ItemCategory.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     public void viewSubject(){

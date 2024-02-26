@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#313338">
+
+
+    <ImageButton
+        android:id="@+id/backButtonSignUp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="backButton"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbutton"/>
+
+    <ImageButton
+        android:id="@+id/request"
+        android:layout_width="129dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="72dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="diamondSignUp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/diamond" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="93dp"
+        android:layout_height="39dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Request"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/request"
+        app:layout_constraintEnd_toEndOf="@+id/request"
+        app:layout_constraintStart_toStartOf="@+id/request"
+        app:layout_constraintTop_toTopOf="@+id/request" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="241dp"
+        android:layout_height="112dp"
+        android:layout_marginBottom="76dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="line and dot"
+        android:rotation="180"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toEndOf="@+id/request"
+        app:srcCompat="@drawable/linedot" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="230dp"
+        android:layout_height="116dp"
+        android:layout_marginBottom="76dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="line and dot"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/request"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/linedot" />
+
+    <TextView
+        android:id="@+id/dateBorrow"
+        android:layout_width="248dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Date Borrow"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemName" />
+
+    <TextView
+        android:id="@+id/returnDate"
+        android:layout_width="248dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Return Date"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateBorrow" />
+
+    <Spinner
+        android:id="@+id/itemName"
+        android:layout_width="250dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="172dp"
+        android:background="@drawable/rectangle"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Department"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

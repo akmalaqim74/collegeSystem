@@ -3,52 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#313338">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="616dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Register Item"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/addItem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="286dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="488dp"
+        android:layout_marginEnd="4dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Add Student To subject"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintStart_toEndOf="@+id/addStudentToSubject"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/addLecturer"
-        android:layout_width="88dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="100dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="addLecturer"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/addicon"/>
-
-    <ImageButton
-        android:id="@+id/addStudent"
-        android:layout_width="88dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="addLecturer"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addLecturer"
-        app:srcCompat="@drawable/addicon"/>
-
-    <ImageButton
-        android:id="@+id/addSubject"
-        android:layout_width="88dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="44dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="addLecturer"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addStudent"
-        app:srcCompat="@drawable/addicon"/>
-
-    <ImageButton
-        android:id="@+id/addStudentToSubject"
         android:layout_width="88dp"
         android:layout_height="83dp"
         android:layout_marginTop="36dp"
@@ -56,10 +47,66 @@
         android:contentDescription="addLecturer"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButtonAdmin"
+        app:srcCompat="@drawable/addicon" />
+
+    <ImageButton
+        android:id="@+id/addSubject"
+        android:layout_width="88dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="48dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="addLecturer"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addStudent"
+        app:srcCompat="@drawable/addicon" />
+
+    <ImageButton
+        android:id="@+id/addStudentToSubject"
+        android:layout_width="88dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="addLecturer"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addSubject"
-        app:srcCompat="@drawable/addicon"/>
+        app:srcCompat="@drawable/addicon" />
+
+    <ImageButton
+        android:id="@+id/addItem"
+        android:layout_width="88dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="add Item"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addStudentToSubject"
+        app:srcCompat="@drawable/addicon" />
+
+    <ImageButton
+        android:id="@+id/addStudent"
+        android:layout_width="88dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="36dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="addLecturer"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addLecturer"
+        app:srcCompat="@drawable/addicon" />
 
     <ImageButton
         android:id="@+id/backButtonAdmin"
@@ -74,6 +121,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backbutton" />
+
+    <Button
+        android:id="@+id/checkBorrowItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addItem" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="384dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Register Subject"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSubject"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="256dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Register Student"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addStudent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="132dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Register Lecturer"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addLecturer"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

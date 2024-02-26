@@ -7,52 +7,35 @@
     android:background="#3C4043"
     android:layout_gravity="center">
 
-    <AutoCompleteTextView
+    <Spinner
         android:id="@+id/subjectSpinner"
-        android:layout_width="249dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="144dp"
-        android:background="@drawable/et_res"
-        android:hint=" subject"
+        android:layout_width="279dp"
+        android:layout_height="91dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/rectangle"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <AutoCompleteTextView
-        android:id="@+id/studentSpinner"
-        android:layout_width="249dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="172dp"
-        android:background="@drawable/et_res"
-        android:hint="student name"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subjectSpinner"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.442" />
 
     <TextView
-        android:id="@+id/addButton"
+        android:id="@+id/nextButton"
         android:layout_width="123dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/rectangle"
         android:gravity="center"
-        android:text="add"
+        android:text="NEXT"
         android:textAlignment="center"
         android:textSize="19dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:focusable="true"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.929"
@@ -62,19 +45,18 @@
 
     <TextView
         android:id="@+id/TextView4"
-        android:layout_width="245dp"
-        android:layout_height="54dp"
-        android:text="Student Subject"
+        android:layout_width="192dp"
+        android:layout_height="72dp"
+        android:text="Item Category"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/subjectSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <ImageButton
         android:id="@+id/Exit"

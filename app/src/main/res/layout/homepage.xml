@@ -207,5 +207,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeTableLayout" />
 
+    <Button
+        android:id="@+id/borrowItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/adminButton"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeTableLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
