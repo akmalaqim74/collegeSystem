@@ -1,5 +1,6 @@
 package com.example.collegesystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +33,22 @@ public class registerItem extends AppCompatActivity {
         setContentView(R.layout.register_item);
         dropBoxItem();
         registerItem();
+        backButtonFunction();
 
+    }
+    public void backButtonFunction(){
+        //========== BACK BUTTON FUNCTION ==========
+        ImageButton back = findViewById(R.id.backButtonSignUp);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event here, e.g., open SignUpActivity
+                Intent intent = new Intent(registerItem.this,adminPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //========== END OF BACK BUTTON FUNCTION==========
     }
 
     public void registerItem(){

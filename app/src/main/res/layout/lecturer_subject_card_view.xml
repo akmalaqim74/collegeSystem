@@ -11,16 +11,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/timeTableLayout"
         android:layout_width="372dp"
-        android:layout_height="match_parent"
+        android:layout_height="158dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/subjectInfo"
-            android:layout_width="358dp"
-            android:layout_height="97dp"
+            android:layout_width="369dp"
+            android:layout_height="72dp"
             android:gravity="center"
             android:text="courseCode \n subjectName \n section"
-            android:textColor="@color/teal_200"
             android:textSize="19sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,12 +33,13 @@
             android:id="@+id/section"
             android:layout_width="362dp"
             android:layout_height="42dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="Section"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.037"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subjectInfo" />
 

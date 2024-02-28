@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,19 @@ public class ItemCategory extends AppCompatActivity {
         setContentView(R.layout.choose_category);
         dropBoxItem();
         nextButton();
+        exitButton();
 
+    }
+    private void exitButton(){
+        ImageButton exit = findViewById(R.id.Exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ItemCategory.this, homePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     public void nextButton(){
         TextView nextButton = findViewById(R.id.nextButton);

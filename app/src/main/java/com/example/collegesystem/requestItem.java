@@ -50,9 +50,24 @@ public class requestItem extends AppCompatActivity {
         showReturnDate();
         dropBoxItemName();
         requestButton();
+        backButtonFunction();
 
 
 
+    }
+    public void backButtonFunction(){
+        //========== BACK BUTTON FUNCTION ==========
+        ImageButton back = findViewById(R.id.backButtonSignUp);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Handle the click event here, e.g., open SignUpActivity
+                Intent intent = new Intent(requestItem.this,ItemCategory.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //========== END OF BACK BUTTON FUNCTION==========
     }
     public void requestButton(){
         ImageButton request = findViewById(R.id.request);
@@ -80,7 +95,7 @@ public class requestItem extends AppCompatActivity {
                                     .child("Borrowed Item")
                                     .child(category)
                                     .child(itemName);
-                            itemRef.addValueEventListener(new ValueEventListener() {
+                            itemRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot tempSnapshot) {
                                     if(tempSnapshot.exists()){

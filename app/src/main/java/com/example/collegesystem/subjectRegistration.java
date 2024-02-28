@@ -231,7 +231,7 @@ public class subjectRegistration extends AppCompatActivity {
 
 
                 //selectedTimeStart,selectedTimeEnded
-                if(!TextUtils.isEmpty(lecturerId) && !TextUtils.isEmpty(courseCode) &&!TextUtils.isEmpty(subjectName) && !TextUtils.isEmpty(section) && !TextUtils.isEmpty(venue)) {
+                if(!TextUtils.isEmpty(tempLecturersId) && !TextUtils.isEmpty(courseCode) &&!TextUtils.isEmpty(subjectName) && !TextUtils.isEmpty(section) && !TextUtils.isEmpty(venue)) {
                     int indexOfLecturerName = tempLecturersId.indexOf(' ');
                     lecturerId = tempLecturersId.substring(0, indexOfLecturerName);
 

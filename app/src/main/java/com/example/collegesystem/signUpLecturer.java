@@ -55,7 +55,7 @@ public class signUpLecturer extends AppCompatActivity {
         //============ DROP BOX ITEM==========
         tempDepartment = findViewById(R.id.dropBox);
         // Define the options for the drop-down menu in an array
-        String[] options = { "FICT","Halal Management"};
+        String[] options = { "FICT","BUSINESS AND MANAGEMENT","SOCIAL SCIENCE"};
         // Create an ArrayAdapter to set the options to the Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
         // Set the adapter to the Spinner
@@ -67,7 +67,7 @@ public class signUpLecturer extends AppCompatActivity {
         //============ DROP BOX ITEM==========
         tempRole = findViewById(R.id.dropBoxRole);
         // Define the options for the drop-down menu in an array
-        String[] options = {"Staff","Admin","Lecturer","Student"};
+        String[] options = {"Staff","Admin","Lecturer"};
         // Create an ArrayAdapter to set the options to the Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
         // Set the adapter to the Spinner
@@ -118,17 +118,7 @@ public class signUpLecturer extends AppCompatActivity {
                     // Check if the course node exists
                     DatabaseReference currentDepartmentRef = departmentRef.child(department);
                     DatabaseReference lecturerIdRef = currentDepartmentRef.child("Lecturer");
-                    /*Explain:  Basically every matricNumber will be store inside a specific course node
-                    there will be 3 nodes,
-                    parent: Course
-                    child: name of Course
-                    grandchild: matric NUmber
-                    son of grandchild: the JSON data
-                     */
-
-
-
-
+                    DatabaseReference staffIdRef = currentDepartmentRef.child("Staff");
                     // Check if matricNo already exists
                     lecturerIdRef.child(lecturer_ID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -142,14 +132,19 @@ public class signUpLecturer extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> task) {
                                                 if (task.isSuccessful()) {
+
                                                     //==========GET USER UID==========
                                                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                                     String UID = firebaseUser.getUid();
 
                                                     // Create a User object
                                                     registerLecturer newRegisterLecturer = new registerLecturer(name, lecturer_ID, email, department,UID,role);
+                                                    if(role.equalsIgnoreCase("Lecturer")){
+                                                        lecturerIdRef.child(lecturer_ID).setValue(newRegisterLecturer);
+                                                    }else{
+                                                        staffIdRef.child(lecturer_ID).setValue(newRegisterLecturer);
+                                                    }
                                                     // STORE THE USER DATA INSIDE THE NODE OF MATRIC NUMBER
-                                                    lecturerIdRef.child(lecturer_ID).setValue(newRegisterLecturer);
                                                     DatabaseReference userRef = rootRef.getReference("Users");
                                                     userRef.child(UID).setValue(newRegisterLecturer);
                                                     Toast.makeText(signUpLecturer.this, "Successfully Registered.", Toast.LENGTH_SHORT).show();

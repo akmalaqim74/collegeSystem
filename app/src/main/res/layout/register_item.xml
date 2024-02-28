@@ -7,6 +7,22 @@
     android:background="#313338">
 
 
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="289dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Register Item"
+        android:textColor="#FFFFFF"
+        android:textSize="29dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toEndOf="@+id/backButtonSignUp"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/backButtonSignUp"
         android:layout_width="62dp"

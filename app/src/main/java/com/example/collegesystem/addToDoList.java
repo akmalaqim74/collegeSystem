@@ -38,7 +38,19 @@ public class addToDoList extends AppCompatActivity {
         setContentView(R.layout.addtodolist);
         showDatePickerDialog();
         saveToDoList();
+        exitButton();
 
+    }
+    private void exitButton(){
+        ImageButton exit = findViewById(R.id.exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(addToDoList.this, toDoList.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void saveToDoList() {

@@ -40,6 +40,7 @@ public class toDoList extends AppCompatActivity {
         backButtonFunction();
         addToDoList();
         display();
+        //listAdapter.notifyDataSetChanged();
 
 
     }
@@ -146,7 +147,7 @@ public class toDoList extends AppCompatActivity {
                 .child(lecturerId)
                 .child("toDoList");
 
-        toDoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        toDoRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -206,6 +207,10 @@ public class toDoList extends AppCompatActivity {
                         String toDoID = snapshot.getKey();
                         Intent intent = new Intent(toDoList.this, updateToDo.class);
                         intent.putExtra("toDoIDKey", toDoID);
+                        intent.putExtra("title",itemToUpdate.getTitle());
+                        intent.putExtra("detail",itemToUpdate.getDetail());
+                        intent.putExtra("date",itemToUpdate.getDate());
+
                         startActivity(intent);
                     }
                 }

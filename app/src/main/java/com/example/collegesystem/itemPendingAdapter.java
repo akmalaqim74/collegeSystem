@@ -34,14 +34,15 @@ public class itemPendingAdapter extends RecyclerView.Adapter<itemPendingAdapter.
         holder.itemName.setText("Item Name: " + currentItem.getItemName());
         holder.time.setText(currentItem.getBorrowDate() + " until " + currentItem.getReturnDate());
         holder.borrowerName.setText("Borrower Name: "+ currentItem.getBorrowName());
+        holder.status.setText("Status: " + currentItem.getStatus());
         holder.returned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int adapterPosition = holder.getAdapterPosition();
                 if (adapterPosition != RecyclerView.NO_POSITION) {
-                    item itemToDelete = list.get(adapterPosition);
+                    item itemToDeletes = list.get(adapterPosition);
                     // Call a method in your activity to delete the item
-                    ((itemPending)context).deleteItemFromDatabase(itemToDelete);
+                    ((itemPending)context).deleteItemFromDatabases(itemToDeletes);
                 }
             }
         });
@@ -65,7 +66,7 @@ public class itemPendingAdapter extends RecyclerView.Adapter<itemPendingAdapter.
 
     public static class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView itemName,time,borrowerName;
+        TextView itemName,time,borrowerName,status;
         ImageButton returned,confirm;
 
         public myViewHolder(@NonNull View itemView) {
@@ -75,6 +76,7 @@ public class itemPendingAdapter extends RecyclerView.Adapter<itemPendingAdapter.
             time = itemView.findViewById(R.id.date);
             returned = itemView.findViewById(R.id.delete);
             confirm = itemView.findViewById(R.id.confirm);
+            status=itemView.findViewById(R.id.status);
         }
     }
 

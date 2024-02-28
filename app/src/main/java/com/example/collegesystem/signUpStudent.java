@@ -67,7 +67,7 @@ public class signUpStudent extends AppCompatActivity {
         //============ DROP BOX ITEM==========
         tempDepartment = findViewById(R.id.dropBox);
         // Define the options for the drop-down menu in an array
-        String[] options = { "FICT","Halal Management"};
+        String[] options = { "FICT","BUSINESS AND MANAGEMENT","SOCIAL SCIENCE"};
         // Create an ArrayAdapter to set the options to the Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_style, options);
         // Set the adapter to the Spinner
@@ -112,9 +112,9 @@ public class signUpStudent extends AppCompatActivity {
                 if(!TextUtils.isEmpty(matricNo) && !TextUtils.isEmpty(IcNUmber) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(department) && !TextUtils.isEmpty(role)) {
                     //========= linked to fireBase==========
                     FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
-                    DatabaseReference courseRef = rootRef.getReference("Department").child("Student");
+                    DatabaseReference courseRef = rootRef.getReference("Department");
                     // Check if the course node exists
-                    DatabaseReference currentCourseRef = courseRef.child(department);
+                    DatabaseReference currentCourseRef = courseRef.child(department).child("Student");
                     DatabaseReference matricNumbersRef = currentCourseRef.child("Matric Number");
                     /*Explain:  Basically every matricNumber will be store inside a specific course node
                     there will be 3 nodes,
@@ -140,6 +140,7 @@ public class signUpStudent extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> task) {
                                                 if (task.isSuccessful()) {
+
                                                     //==========GET USER UID==========
                                                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                                                     String UID = firebaseUser.getUid();

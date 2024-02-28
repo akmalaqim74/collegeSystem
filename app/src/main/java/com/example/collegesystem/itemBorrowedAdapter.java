@@ -34,6 +34,7 @@ public class itemBorrowedAdapter extends RecyclerView.Adapter<itemBorrowedAdapte
         holder.itemName.setText("Item Name: " + currentItem.getItemName());
         holder.time.setText(currentItem.getBorrowDate() + " until " + currentItem.getReturnDate());
         holder.borrowerName.setText("Borrower Name: "+ currentItem.getBorrowName());
+        holder.status.setText("Status: " + currentItem.getStatus());
         holder.returned.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +55,7 @@ public class itemBorrowedAdapter extends RecyclerView.Adapter<itemBorrowedAdapte
 
     public static class myViewHolder extends RecyclerView.ViewHolder{
 
-        TextView itemName,time,borrowerName;
+        TextView itemName,time,borrowerName,status;
         ImageButton returned;
 
         public myViewHolder(@NonNull View itemView) {
@@ -63,6 +64,7 @@ public class itemBorrowedAdapter extends RecyclerView.Adapter<itemBorrowedAdapte
             borrowerName = itemView.findViewById(R.id.borrowerName);
             time = itemView.findViewById(R.id.date);
             returned = itemView.findViewById(R.id.delete);
+            status=itemView.findViewById(R.id.status);
         }
     }
 

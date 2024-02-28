@@ -178,14 +178,53 @@ public class homePage extends AppCompatActivity {
 
     public void studentAttendance(){
         ImageButton takingAttendance = findViewById(R.id.attendance);
-        takingAttendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(homePage.this,chooseSubject.class);
-                startActivity(intent);
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
 
-            }
-        });
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String role = dataSnapshot.child("role").getValue(String.class);
+                        if(role.equals("Lecturer")){
+                            takingAttendance.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(homePage.this, chooseSubject.class);
+
+                                    startActivity(intent);
+                                }
+                            });
+
+
+                        }else{
+                            takingAttendance.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(homePage.this, "Only Available for Lecturer", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                        }
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
 
     }
     public void adminButtonFunction() {
@@ -203,7 +242,8 @@ public class homePage extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         String role = dataSnapshot.child("role").getValue(String.class);
-                        if (role.equals("Lecturer")) {
+                        if (role.equals("Admin") || role.equals("Staff")) {
+                            admin.setVisibility(View.VISIBLE);
                             admin.setOnClickListener(new View.OnClickListener() {
 
                                 @Override
@@ -211,6 +251,16 @@ public class homePage extends AppCompatActivity {
                                     Intent intent = new Intent(homePage.this, adminPage.class);
 
                                     startActivity(intent);
+                                }
+                            });
+                        }else{
+                            admin.setVisibility(View.GONE);
+                            admin.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(homePage.this, "Only Available for admin", Toast.LENGTH_SHORT).show();
+
                                 }
                             });
                         }
@@ -256,14 +306,54 @@ public class homePage extends AppCompatActivity {
             });
         }
     }
-    public void checkAttendance(){
+    public void checkAttendance() {
         ImageButton check = findViewById(R.id.check);
-        check.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(homePage.this,checkAttendance.class);
-                startActivity(intent);
-            }
-        });
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseDatabase rootRef = FirebaseDatabase.getInstance("https://college-system-dcs212004-default-rtdb.asia-southeast1.firebasedatabase.app");
+            DatabaseReference userRef = rootRef.getReference()
+                    .child("Users")
+                    .child(uid);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String role = dataSnapshot.child("role").getValue(String.class);
+                        if (role.equals("Lecturer")) {
+                            check.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(homePage.this, checkAttendance.class);
+
+                                    startActivity(intent);
+                                }
+                            });
+
+
+                        } else {
+                            check.setOnClickListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(homePage.this, "Only Available for Lecturer", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                        }
+
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                }
+            });
+        }
     }
 }

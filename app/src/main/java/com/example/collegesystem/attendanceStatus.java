@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,22 @@ public class attendanceStatus extends AppCompatActivity {
         setSubjectName(subjectName);
         showDatePickerDialog();
         displayStatus();
+        backButtonMethod();
+
+    }
+    public void backButtonMethod(){
+        ImageButton addStudentButton = findViewById(R.id.backButtonattendance);
+
+
+        addStudentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(attendanceStatus.this, checkAttendance.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
 
     }
     public void recyclerViewCalling(){

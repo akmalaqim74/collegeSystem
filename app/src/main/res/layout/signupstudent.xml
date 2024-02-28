@@ -162,8 +162,8 @@
 
     <Spinner
         android:id="@+id/dropBox"
-        android:layout_width="249dp"
-        android:layout_height="56dp"
+        android:layout_width="253dp"
+        android:layout_height="78dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/et_res"
         android:ems="10"

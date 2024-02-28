@@ -52,6 +52,7 @@ public class studentAttendance extends AppCompatActivity {
         recyclerView();
         showDatePickerDialog();
         submitButtonFunction();
+        backButtonMethod();
 
 
     }
@@ -209,14 +210,19 @@ public class studentAttendance extends AppCompatActivity {
 
 
     }
+    public void backButtonMethod(){
+        ImageButton addStudentButton = findViewById(R.id.backButtonattendance);
+
+
+        addStudentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(studentAttendance.this, chooseSubject.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+    }
 }
-/*if(!isSuccessful.isSuccessful()){
-                            Toast.makeText(studentAttendance.this, "Some Error Occur, please Try again \n Please inform admin if happens again", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(studentAttendance.this, "Succesfully submit", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }else{
-                        Toast.makeText(studentAttendance.this, "Please Enter Date Of Attendance", Toast.LENGTH_SHORT).show();
-
-                    }*/

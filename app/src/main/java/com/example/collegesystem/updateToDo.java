@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 public class updateToDo extends AppCompatActivity {
-    String date,toDoID;
+    String date,toDoID,title,detail;
     EditText tempToDoDetails,tempTitle;
     TextView displayDate;
     Intent toDoIDIntent;
@@ -39,10 +39,35 @@ public class updateToDo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addtodolist);
         showDatePickerDialog();
-        saveToDoList();
+        exitButton();
         toDoIDIntent = getIntent();
-        toDoID = toDoIDIntent.getStringExtra("toDoIDKey");
+        tempTitle = findViewById(R.id.title);
+        tempToDoDetails = findViewById(R.id.taskDetails);
+        displayDate = findViewById(R.id.dateDisplay);
 
+        title = toDoIDIntent.getStringExtra("title");
+        detail = toDoIDIntent.getStringExtra("detail");
+        date = toDoIDIntent.getStringExtra("date");
+
+        tempToDoDetails.setText(detail);
+
+        tempTitle.setText(title);
+
+        displayDate.setText(date);
+        toDoID = toDoIDIntent.getStringExtra("toDoIDKey");
+        saveToDoList();
+
+    }
+    private void exitButton(){
+        ImageButton exit = findViewById(R.id.exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(updateToDo.this, toDoList.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public void saveToDoList() {
@@ -51,8 +76,8 @@ public class updateToDo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(toDoID!=null){
-                    String title = getTitles();
-                    String detail = getDetails();
+                    title = getTitles();
+                    detail = getDetails();
 
                     FirebaseAuth mAuth = FirebaseAuth.getInstance();
                     FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -65,7 +90,7 @@ public class updateToDo extends AppCompatActivity {
                                 .child("Users")
                                 .child(uid);
 
-                        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        userRef.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 // Generate a random ID for the to-do item
@@ -99,6 +124,8 @@ public class updateToDo extends AppCompatActivity {
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(updateToDo.this, "Updated", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(updateToDo.this,toDoList.class);
+                                                    startActivity(intent);
+                                                    finish();
                                                     // The data was successfully written to the database
                                                 } else {
                                                     Toast.makeText(updateToDo.this, "Failed to add, please submit a report", Toast.LENGTH_SHORT).show();

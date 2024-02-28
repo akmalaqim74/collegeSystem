@@ -2,6 +2,7 @@ package com.example.collegesystem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -199,21 +200,22 @@ public class addStudentToSubject extends AppCompatActivity {
                                         // The matricNo already exists, handle the situation (e.g., show an error message)
                                         Toast.makeText(addStudentToSubject.this, "Student already in the subject", Toast.LENGTH_SHORT).show();
                                     }else{
-                                        boolean subjectExist = false;
-                                        boolean studentExist = false;
+                                        int subjectExist = 0;
+                                        int studentExist = 0;
                                         //====loop to check subject invalid or not
                                         for(int i = 0;i < allSubject.length;i++){
                                             if(subject.equalsIgnoreCase(allSubject[i])){
-                                                subjectExist = true;
+                                                break;
                                             }
                                         }
                                         //=====loop to check student exist or not
                                         for(int j = 0; j< allStudent.length;j++){
+                                            Log.d("matric and name ", studentMatric + allStudent[j]);
                                             if(studentMatric.equalsIgnoreCase(allStudent[j])){
-                                                studentExist = true;
+                                                break;
                                             }
                                         }
-                                        if (subjectExist && studentExist){
+                                        if (subjectExist ==0 && studentExist == 0 && indexOfSpaceStudent > 0){
                                             subjectRef.setValue(studentMatric.substring(indexOfSpaceStudent))
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
@@ -227,7 +229,7 @@ public class addStudentToSubject extends AppCompatActivity {
                                                     });
 
                                         }
-                                        if (!subjectExist || !studentExist){
+                                        if (subjectExist == 1 || studentExist == 1){
                                             Toast.makeText(addStudentToSubject.this, "Invalid Subject or Student", Toast.LENGTH_SHORT).show();
                                         }
                                     }

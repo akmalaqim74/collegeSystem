@@ -43,7 +43,7 @@
         android:id="@+id/textView14"
         android:layout_width="287dp"
         android:layout_height="48dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:gravity="left"
@@ -52,7 +52,7 @@
         android:textColor="#FFFFFF"
         android:textSize="21dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toEndOf="@+id/addItem"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 

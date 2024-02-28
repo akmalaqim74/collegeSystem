@@ -49,19 +49,19 @@
 
     <EditText
         android:id="@+id/taskDetails"
-        android:layout_width="match_parent"
-        android:layout_height="548dp"
+        android:layout_width="946dp"
+        android:layout_height="885dp"
+        android:background="#3A3C3F"
+        android:gravity="top"
         android:hint="Task Details"
+        android:inputType="textMultiLine"
+        android:maxLength="1000"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
-        android:textSize="21sp"
-        android:maxLength="1000"
-        android:background="#3A3C3F"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:gravity="top"
         android:singleLine="false"
-        android:inputType="textMultiLine"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout" />
@@ -96,6 +96,22 @@
         app:layout_constraintStart_toEndOf="@+id/datePicker"
         app:layout_constraintTop_toBottomOf="@+id/taskDetails" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="111dp"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="29dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="@+id/saveButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/saveButton"
+        app:layout_constraintTop_toTopOf="@+id/saveButton"
+        app:layout_constraintVertical_bias="0.421" />
+
     <ImageButton
         android:id="@+id/saveButton"
         android:layout_width="183dp"
@@ -106,26 +122,10 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
-        app:layout_constraintVertical_bias="0.357"
+        app:layout_constraintVertical_bias="0.018"
         app:srcCompat="@drawable/check" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="111dp"
-        android:layout_height="36dp"
-        android:text="Save"
-        android:textSize="29dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/saveButton"
-        app:layout_constraintEnd_toEndOf="@+id/saveButton"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/saveButton"
-        app:layout_constraintTop_toTopOf="@+id/saveButton"
-        app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

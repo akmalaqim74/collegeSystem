@@ -97,7 +97,7 @@ public class itemPending extends AppCompatActivity {
 
 
     }
-    public void deleteItemFromDatabase(item itemToDelete) {
+    public void deleteItemFromDatabases(item itemToDelete) {
         DatabaseReference itemPendingRef = rootRef.getReference()
                 .child("Borrowed Item")
                 .child(itemToDelete.getCategory());
@@ -110,6 +110,9 @@ public class itemPending extends AppCompatActivity {
                     String category = returnedItem.getCategory();
                     String itemName = returnedItem.getItemName();
                     String location = returnedItem.getLocation();
+                    String borrowerName = returnedItem.getBorrowName();
+                    String dateStart = returnedItem.getBorrowDate();
+                    String dateReturn = returnedItem.getReturnDate();
                     String status = "available";
 
 
@@ -118,7 +121,7 @@ public class itemPending extends AppCompatActivity {
                             returnedItem.getBorrowName().equals(itemToDelete.getBorrowName()) &&
                             returnedItem.getStatus().equals(itemToDelete.getStatus())
                     ){
-                        snapshot.getRef().removeValue()
+                        itemPendingRef.child(itemToDelete.getItemName()).removeValue()
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -144,6 +147,7 @@ public class itemPending extends AppCompatActivity {
                                         Toast.makeText(itemPending.this, "Failed to delete item", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
                     }
                 }
             }

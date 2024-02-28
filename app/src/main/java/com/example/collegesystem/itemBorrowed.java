@@ -120,13 +120,14 @@ public class itemBorrowed extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     item returnedItem = snapshot.getValue(item.class);
                     String category = returnedItem.getCategory();
-                    String itemName = returnedItem.getItemName();
+                    String itemName = itemToDelete.getItemName();
                     String location = returnedItem.getLocation();
                     String status = "available";
 
 
                     if (returnedItem != null &&
                             returnedItem.getItemName().equals(itemToDelete.getItemName()) &&
+                            returnedItem.getBorrowName().equals(itemToDelete.getBorrowName())&&
                             returnedItem.getBorrowName().equals(itemToDelete.getBorrowName()) &&
                             returnedItem.getStatus().equals(itemToDelete.getStatus())
                     ){
@@ -135,7 +136,6 @@ public class itemBorrowed extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         item updateStatus = new item(itemName,location,status,category);
-                                        listAdapter.notifyDataSetChanged();
                                         tempItemRefs.child(itemName).setValue(updateStatus).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -145,6 +145,7 @@ public class itemBorrowed extends AppCompatActivity {
                                                 }
                                             }
                                         });
+                                        listAdapter.notifyDataSetChanged();
                                         }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +35,21 @@ public class checkAttendance extends AppCompatActivity {
         setContentView(R.layout.choosesubject);
         dropBoxSubject();
         nextButton();
+        exitButton();
 
 
 
+    }
+    private void exitButton(){
+        ImageButton exit = findViewById(R.id.Exit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(checkAttendance.this,homePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     private void dropBoxSubject(){
         String UID = currentUser.getUid();
